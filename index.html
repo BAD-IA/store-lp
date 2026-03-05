@@ -3,556 +3,651 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saúde & Beleza Express — Pague na Entrega</title>
-  <meta name="description" content="Joelheira Ortopédica, Clareador de Manchas e Pistola Massageadora com entrega rápida. Pague só quando receber!">
-
-  <!-- Fonts -->
+  <title>Saude e Bem-Estar Express — Pague na Entrega</title>
+  <meta name="description" content="Joelheira Ortopedica, Clareador de Manchas e Pistola Massageadora. Frete gratis. Pague so quando receber!">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
   <style>
-    /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface2: #1a1a26;
-      --border: #2a2a3a;
+      --bg: #0b0b10;
+      --surface: #13131c;
+      --surface2: #1c1c28;
+      --border: #2e2e42;
       --green: #00e676;
-      --green-dark: #00c853;
-      --green-glow: rgba(0,230,118,0.15);
+      --green2: #00c853;
       --gold: #ffd600;
       --text: #f0f0f5;
-      --muted: #8888aa;
-      --accent: #7c4dff;
-      --red: #ff5252;
-      --radius: 16px;
+      --muted: #8888a0;
+      --radius: 14px;
     }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-    /* ===== SCROLL REVEAL ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-
-    /* ===== TOP BAR ===== */
+    /* TOPBAR */
     .topbar {
       background: var(--green);
       color: #000;
       text-align: center;
-      padding: 10px 20px;
+      padding: 10px 16px;
+      font-size: 0.78rem;
       font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
-    .topbar span { margin: 0 12px; }
+    .topbar span { margin: 0 10px; }
 
-    /* ===== NAV ===== */
+    /* NAV */
     nav {
+      background: rgba(11,11,16,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10,10,15,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
       padding: 14px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
     .nav-logo {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 900;
-      background: linear-gradient(90deg, var(--green), #00bcd4);
+      background: linear-gradient(135deg, var(--green), #69f0ae);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      white-space: nowrap;
     }
-    .nav-cod {
-      background: var(--green);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 6px 16px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .nav-pills { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-pill {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all .2s;
     }
+    .nav-pill:hover { background: var(--green); color: #000; border-color: var(--green); }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: 72px 24px 60px;
       text-align: center;
-      padding: 80px 24px 60px;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg {
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,230,118,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,77,255,0.1) 0%, transparent 60%);
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,230,118,.12) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-badge {
-      background: linear-gradient(135deg, var(--green-glow), rgba(0,230,118,0.05));
-      border: 1px solid var(--green);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,230,118,.12);
+      border: 1px solid rgba(0,230,118,.3);
       color: var(--green);
-      font-size: 0.8rem;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.82rem;
       font-weight: 700;
-      padding: 6px 18px;
-      border-radius: 50px;
       margin-bottom: 24px;
-      display: inline-block;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-size: clamp(2rem, 6vw, 3.6rem);
       font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 20px;
-      max-width: 800px;
+      line-height: 1.1;
+      max-width: 820px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.02em;
     }
-    .hero h1 .green { color: var(--green); }
-    .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+    .hero h1 em { font-style: normal; color: var(--green); }
+    .hero-sub {
       color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 40px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
     }
+    .cod-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 32px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cod-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .cod-item .ico {
+      width: 36px; height: 36px;
+      background: rgba(0,230,118,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .cod-divider { width: 1px; height: 36px; background: var(--border); }
     .hero-products {
       display: flex;
       gap: 12px;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
     }
-    .hero-pill {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 8px 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
+    .hero-prod-chip {
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-    .hero-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
-
-    /* COD BLOCK */
-    .cod-block {
-      background: linear-gradient(135deg, rgba(0,230,118,0.1), rgba(0,200,83,0.05));
-      border: 2px solid var(--green);
-      border-radius: var(--radius);
-      padding: 24px 36px;
-      margin-bottom: 40px;
-      max-width: 600px;
-      width: 100%;
-    }
-    .cod-block .cod-title {
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-    .cod-block p { color: var(--muted); font-size: 0.95rem; }
-    .cod-icons {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-    .cod-icon { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.8rem; color: var(--muted); }
-    .cod-icon .ic { font-size: 1.8rem; }
-
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: #000;
-      font-weight: 900;
-      font-size: 1.1rem;
-      padding: 18px 44px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(0,230,118,0.35);
-    }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,230,118,0.45); }
-    .btn-cta-outline {
-      background: transparent;
-      border: 2px solid var(--green);
-      color: var(--green);
-      box-shadow: none;
-    }
-    .btn-cta-outline:hover { background: var(--green-glow); }
-
-    .hero-trust {
-      display: flex;
-      gap: 32px;
-      margin-top: 40px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .hero-trust-item { display: flex; align-items: center; gap: 6px; }
-
-    /* ===== SECTION UTILS ===== */
-    section { padding: 80px 24px; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      color: var(--green);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; }
-
-    /* ===== HOW IT WORKS ===== */
-    .how-section { background: var(--surface); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .step {
       background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 24px;
-      text-align: center;
-      position: relative;
+      border-radius: 50px;
+      padding: 8px 16px 8px 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+      transition: all .25s;
     }
-    .step-num {
-      width: 48px; height: 48px;
-      background: var(--green);
-      color: #000;
+    .hero-prod-chip img {
+      width: 32px; height: 32px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 1.1rem;
-      margin: 0 auto 16px;
-    }
-    .step h3 { font-weight: 700; margin-bottom: 8px; }
-    .step p { color: var(--muted); font-size: 0.9rem; }
-
-    /* ===== PRODUCT SECTIONS ===== */
-    .product-section {
-      border-bottom: 1px solid var(--border);
-    }
-    .product-section:nth-child(even) { background: var(--surface); }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .product-grid.reverse { direction: rtl; }
-    .product-grid.reverse > * { direction: ltr; }
-
-    .product-img-wrap {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-    }
-    .product-img-wrap img {
-      width: 100%;
-      height: 420px;
       object-fit: cover;
-      border-radius: 24px;
     }
-    .product-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: var(--green);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 5px 14px;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .product-rank {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(0,0,0,0.7);
-      border: 1px solid var(--green);
-      color: var(--green);
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 5px 14px;
-      border-radius: 50px;
-    }
+    .hero-prod-chip:hover { border-color: var(--green); color: var(--green); }
 
-    .product-content .prod-tag {
-      color: var(--green);
+    /* TRUST BAR */
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 18px 24px;
+      overflow-x: auto;
+    }
+    .trust-inner {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: center;
+      min-width: max-content;
+      margin: 0 auto;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .trust-item strong { color: var(--green); font-size: 1rem; }
+    .trust-sep { color: var(--border); font-size: 1.2rem; }
+
+    /* SECTION LABEL */
+    .section-eyebrow {
       font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: var(--green);
       margin-bottom: 12px;
     }
-    .product-content h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+
+    /* PRODUCT SECTIONS */
+    .prod-section {
+      padding: 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .prod-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .prod-grid.rev { direction: rtl; }
+    .prod-grid.rev > * { direction: ltr; }
+    .prod-img-wrap { position: relative; }
+    .prod-img-glow {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse, rgba(0,230,118,.15) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .prod-img-wrap img {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 20px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      transition: transform .4s ease;
+    }
+    .prod-img-wrap:hover img { transform: scale(1.03); }
+    .prod-content h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
       font-weight: 900;
-      line-height: 1.2;
+      line-height: 1.15;
       margin-bottom: 16px;
+      letter-spacing: -0.02em;
     }
-    .product-content .prod-desc {
+    .prod-tagline {
       color: var(--muted);
-      margin-bottom: 28px;
       font-size: 1rem;
-      line-height: 1.7;
+      line-height: 1.65;
+      margin-bottom: 24px;
     }
-    .benefits {
+    .prod-benefits {
       list-style: none;
-      margin-bottom: 32px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      margin-bottom: 28px;
     }
-    .benefits li {
+    .prod-benefits li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
       font-size: 0.95rem;
+      line-height: 1.5;
     }
-    .benefits li::before {
-      content: '✓';
-      background: var(--green);
-      color: #000;
-      width: 22px;
-      height: 22px;
+    .check-ico {
+      width: 20px; height: 20px;
+      min-width: 20px;
+      background: rgba(0,230,118,.15);
+      border: 1.5px solid var(--green);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--green);
+      font-size: 11px;
       font-weight: 900;
-      font-size: 0.75rem;
+      margin-top: 2px;
       flex-shrink: 0;
-      margin-top: 1px;
     }
-
-    .price-box {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-    .price-old {
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-decoration: line-through;
-      margin-bottom: 4px;
-    }
-    .price-main {
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .price-inst { color: var(--muted); font-size: 0.85rem; }
-    .price-cod {
-      margin-top: 12px;
-      background: rgba(0,230,118,0.08);
-      border: 1px solid var(--green);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 0.85rem;
-      color: var(--green);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* ===== TESTIMONIALS ===== */
-    .testimonials-section { background: var(--surface); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .testimonial-card {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: border-color 0.3s;
-    }
-    .testimonial-card:hover { border-color: var(--green); }
-    .t-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
-    .t-text { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-    .t-text::before { content: '"'; color: var(--green); font-size: 1.5rem; line-height: 0; vertical-align: -0.4em; }
-    .t-text::after { content: '"'; color: var(--green); font-size: 1.5rem; line-height: 0; vertical-align: -0.4em; }
-    .t-author { display: flex; align-items: center; gap: 12px; }
-    .t-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--green);
-    }
-    .t-name { font-weight: 700; font-size: 0.9rem; }
-    .t-location { color: var(--muted); font-size: 0.8rem; }
-    .t-product {
-      display: inline-block;
-      background: var(--green-glow);
-      color: var(--green);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 50px;
-      margin-top: 4px;
-    }
-
-    /* ===== SOCIAL PROOF BAR ===== */
-    .proof-bar {
-      background: var(--surface2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 28px 24px;
-    }
-    .proof-items {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-    .proof-item { text-align: center; }
-    .proof-num {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--green);
-      line-height: 1;
-    }
-    .proof-label { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
-
-    /* ===== FAQ ===== */
-    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; }
-    .faq-item {
+    .prod-price-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
+    .prod-price-main {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: -0.03em;
+    }
+    .prod-price-inst { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }
+    .prod-price-cod {
+      margin-left: auto;
+      background: rgba(0,230,118,.1);
+      border: 1px solid rgba(0,230,118,.3);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 30px;
+      letter-spacing: 0.04em;
+    }
+    .btn-buy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: #000;
+      font-weight: 800;
+      font-size: 1rem;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.01em;
+    }
+    .btn-buy::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      animation: shimmer 2.5s infinite;
+    }
+    @keyframes shimmer { to { left: 160%; } }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,230,118,.4); }
+    .btn-buy:active { transform: translateY(0); }
+    .btn-pulse { animation: pulse-glow 2s ease-in-out infinite; }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,.4); }
+      50% { box-shadow: 0 0 0 12px rgba(0,230,118,.0); }
+    }
+    .prod-stock-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+    .prod-stock-note span { color: #ff6b6b; font-weight: 700; }
+
+    /* DIVIDER */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* HOW IT WORKS */
+    .how-section {
+      padding: 80px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .how-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .how-section > p { color: var(--muted); margin-bottom: 48px; font-size: 1rem; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .how-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      position: relative;
+    }
+    .how-step::after {
+      content: attr(data-arrow);
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      color: var(--green);
+      z-index: 1;
+    }
+    .how-step:last-child::after { display: none; }
+    .how-step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(0,230,118,.12);
+      border: 2px solid rgba(0,230,118,.3);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .how-step p { font-size: 0.82rem; color: var(--muted); margin: 0; }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px;
+    }
+    .testimonials-section h2 {
+      text-align: center;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .testimonials-section .sub {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+    }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .test-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .test-card:nth-child(2) { margin-top: -16px; }
+    .test-card:nth-child(5) { margin-top: -16px; }
+    .test-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .test-text {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #cccce0;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .test-author { display: flex; align-items: center; gap: 10px; }
+    .test-author img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+    .test-name { font-weight: 700; font-size: 0.88rem; }
+    .test-location { font-size: 0.76rem; color: var(--muted); }
+    .test-tag {
+      display: inline-block;
+      background: rgba(0,230,118,.1);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 80px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-item.open { border-color: rgba(0,230,118,.35); }
     .faq-q {
       padding: 20px 24px;
-      font-weight: 700;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: color 0.2s;
-    }
-    .faq-q:hover { color: var(--green); }
-    .faq-q .arrow { font-size: 1.2rem; transition: transform 0.3s; color: var(--green); }
-    .faq-item.open .arrow { transform: rotate(45deg); }
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s;
-      padding: 0 24px;
-      color: var(--muted);
+      font-weight: 600;
       font-size: 0.95rem;
+      user-select: none;
+      background: var(--surface);
+      transition: background .2s;
+    }
+    .faq-item.open .faq-q { background: var(--surface2); }
+    .faq-arrow {
+      font-size: 1.2rem;
+      color: var(--green);
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 0.9rem;
       line-height: 1.7;
+      color: var(--muted);
+      background: var(--surface2);
     }
-    .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+    .faq-item.open .faq-a { display: block; }
 
-    /* ===== CTA FINAL ===== */
+    /* CTA FINAL */
     .cta-final {
+      background: linear-gradient(135deg, rgba(0,230,118,.08) 0%, rgba(0,200,83,.04) 100%);
+      border-top: 1px solid rgba(0,230,118,.2);
+      padding: 80px 24px;
       text-align: center;
-      background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(124,77,255,0.05));
-      border-top: 1px solid var(--border);
     }
-    .cta-final h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
-    .cta-final p { color: var(--muted); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .cta-final p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-final {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-cta-final.primary { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
+    .btn-cta-final.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,230,118,.4); }
+    .btn-cta-final.outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-cta-final.outline:hover { border-color: var(--green); color: var(--green); }
 
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
       padding: 40px 24px;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
     }
-    footer strong { color: var(--text); }
+    .footer-coinzz {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 24px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .coinzz-badge {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy { font-size: 0.78rem; color: var(--muted); }
 
-    /* ===== STICKY MOBILE ===== */
-    .sticky-mob {
+    /* STICKY MOBILE */
+    .sticky-mobile {
       display: none;
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: var(--surface);
+      background: rgba(11,11,16,.97);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       padding: 12px 16px;
       z-index: 200;
-      gap: 12px;
     }
-    .sticky-mob a { flex: 1; text-align: center; }
+    .sticky-mobile-btns { display: flex; gap: 8px; }
+    .sticky-mobile-btns a {
+      flex: 1;
+      text-align: center;
+      padding: 13px 8px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .sm-btn-1 { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
+    .sm-btn-2 { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+    .sm-btn-3 { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
 
-    /* ===== RESPONSIVE ===== */
+    /* REVEAL ANIMATIONS */
+    .reveal, .reveal-left, .reveal-right {
+      opacity: 0;
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal { transform: translateY(30px); }
+    .reveal-left { transform: translateX(-30px); }
+    .reveal-right { transform: translateX(30px); }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .product-grid { grid-template-columns: 1fr; gap: 32px; }
-      .product-grid.reverse { direction: ltr; }
-      .product-img-wrap img { height: 280px; }
-      .sticky-mob { display: flex; }
-      body { padding-bottom: 72px; }
-      .hero { padding-top: 60px; }
+      .prod-grid, .prod-grid.rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+      .prod-grid.rev .prod-content { order: -1; }
+      .how-steps { grid-template-columns: repeat(2, 1fr); }
+      .how-step::after { display: none; }
+      .test-grid { grid-template-columns: 1fr; }
+      .test-card:nth-child(2), .test-card:nth-child(5) { margin-top: 0; }
+      .cod-divider { display: none; }
+      nav { flex-direction: column; gap: 10px; }
+      .sticky-mobile { display: block; }
+      body { padding-bottom: 80px; }
     }
     @media (max-width: 480px) {
-      .cod-block { padding: 20px; }
-      .cod-block .cod-title { font-size: 1.3rem; }
+      .how-steps { grid-template-columns: 1fr; }
+      .topbar span:not(:first-child) { display: none; }
     }
   </style>
 </head>
@@ -560,418 +655,410 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
-  🚚 <span>FRETE GRÁTIS</span> 🔒 <span>COMPRE AGORA, PAGUE NA ENTREGA</span> ⚡ <span>ENTREGA EM ATÉ 3 DIAS ÚTEIS</span>
+  <span>FRETE GRATIS</span>
+  <span>|</span>
+  <span>PAGUE NA ENTREGA</span>
+  <span>|</span>
+  <span>ATE 5 DIAS UTEIS</span>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Saúde & Beleza Express</div>
-  <a href="#produtos" class="nav-cod">🛒 Ver Produtos</a>
+  <div class="nav-logo">SaudeExpress</div>
+  <div class="nav-pills">
+    <a href="#joelheira" class="nav-pill">Joelheira</a>
+    <a href="#clareador" class="nav-pill">Clareador</a>
+    <a href="#pistola" class="nav-pill">Pistola</a>
+  </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="inicio">
-  <div class="hero-bg"></div>
-  <div style="position:relative; z-index:1; max-width:900px; width:100%;">
-    <div class="hero-badge reveal">🔥 Produtos Campeões de Vendas 2026</div>
-    <h1 class="reveal delay-1">Cuide do Seu Corpo &<br><span class="green">Pague Só na Entrega</span></h1>
-    <p class="reveal delay-2">Joelheira, Clareador e Massageador selecionados entre os mais vendidos do Brasil. Sem risco, sem cartão — você paga quando o produto chegar na sua mão.</p>
-
-    <div class="hero-products reveal delay-3">
-      <div class="hero-pill"><span class="dot"></span> 🦵 Joelheira Premium</div>
-      <div class="hero-pill"><span class="dot"></span> ✨ Clareador de Manchas</div>
-      <div class="hero-pill"><span class="dot"></span> 💆 Pistola Massageadora</div>
-    </div>
-
-    <div class="cod-block reveal delay-4">
-      <div class="cod-title">🚚 PAGUE NA ENTREGA</div>
-      <p>Faça seu pedido agora — sem cartão de crédito, sem riscos. Você paga em dinheiro só quando o entregador bater na sua porta.</p>
-      <div class="cod-icons">
-        <div class="cod-icon"><span class="ic">📦</span>Faça o pedido</div>
-        <div class="cod-icon"><span class="ic">🚚</span>Enviamos para você</div>
-        <div class="cod-icon"><span class="ic">🤝</span>Receba em casa</div>
-        <div class="cod-icon"><span class="ic">💵</span>Pague na entrega</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Novidade 2025 - Pague so quando receber</div>
+  <h1>Saude e Beleza<br>direto na sua porta,<br><em>sem pagar antes.</em></h1>
+  <p class="hero-sub">
+    Escolha seu produto, receba em casa e so pague no momento da entrega. Zero risco pra voce.
+  </p>
+  <div class="cod-strip">
+    <div class="cod-item">
+      <div class="ico">&#128230;</div>
+      <div>
+        <div style="font-size:.75rem;color:var(--muted)">Pagamento</div>
+        <div>Pague na Entrega (COD)</div>
       </div>
     </div>
-
-    <a href="#produtos" class="btn-cta reveal">
-      🛒 Ver os 3 Produtos — Pague na Entrega
-    </a>
-
-    <div class="hero-trust reveal">
-      <div class="hero-trust-item">⭐ +15.000 clientes satisfeitos</div>
-      <div class="hero-trust-item">🔒 100% seguro</div>
-      <div class="hero-trust-item">⚡ Entrega expressa</div>
-      <div class="hero-trust-item">💯 Satisfação garantida</div>
+    <div class="cod-divider"></div>
+    <div class="cod-item">
+      <div class="ico">&#128666;</div>
+      <div>
+        <div style="font-size:.75rem;color:var(--muted)">Envio</div>
+        <div>Frete 100% Gratis</div>
+      </div>
     </div>
+    <div class="cod-divider"></div>
+    <div class="cod-item">
+      <div class="ico">&#9989;</div>
+      <div>
+        <div style="font-size:.75rem;color:var(--muted)">Garantia</div>
+        <div>Troca sem burocracia</div>
+      </div>
+    </div>
+    <div class="cod-divider"></div>
+    <div class="cod-item">
+      <div class="ico">&#128276;</div>
+      <div>
+        <div style="font-size:.75rem;color:var(--muted)">Prazo</div>
+        <div>3 a 5 dias uteis</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-products">
+    <a href="#joelheira" class="hero-prod-chip">
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260223-051524pro8xlev.jpeg" alt="Joelheira">
+      Joelheira - R$97
+    </a>
+    <a href="#clareador" class="hero-prod-chip">
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260223-091813pro807dq.png" alt="Clareador">
+      Clareador - R$97
+    </a>
+    <a href="#pistola" class="hero-prod-chip">
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260220-133903pro806w5.jpg" alt="Pistola">
+      Pistola - R$127
+    </a>
   </div>
 </section>
 
-<!-- ===== SOCIAL PROOF BAR ===== -->
-<div class="proof-bar">
-  <div class="proof-items">
-    <div class="proof-item reveal"><div class="proof-num">+15K</div><div class="proof-label">Clientes atendidos</div></div>
-    <div class="proof-item reveal delay-1"><div class="proof-num">4.9★</div><div class="proof-label">Avaliação média</div></div>
-    <div class="proof-item reveal delay-2"><div class="proof-num">+3K</div><div class="proof-label">Vendedores ativos</div></div>
-    <div class="proof-item reveal delay-3"><div class="proof-num">3 dias</div><div class="proof-label">Entrega média</div></div>
-    <div class="proof-item reveal delay-4"><div class="proof-num">0%</div><div class="proof-label">Risco pra você</div></div>
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><strong>+15.000</strong> clientes atendidos</div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item"><strong>4.9</strong> estrelas</div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item"><strong>100%</strong> pague na entrega</div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item"><strong>0</strong> cobranca antecipada</div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item"><strong>Troca</strong> garantida</div>
   </div>
 </div>
 
-<!-- ===== COMO FUNCIONA ===== -->
-<section class="how-section" id="como-funciona">
-  <div class="container">
-    <div class="section-tag reveal">Como funciona</div>
-    <h2 class="section-title reveal">É simples assim 👇</h2>
-    <p class="section-sub reveal">Você não precisa de cartão, nem conta bancária. Só escolhe, pedimos, enviamos e você paga quando receber.</p>
-    <div class="steps">
-      <div class="step reveal delay-1">
-        <div class="step-num">1</div>
-        <h3>Escolha o produto</h3>
-        <p>Selecione 1, 2 ou os 3 produtos abaixo e clique em pedir.</p>
-      </div>
-      <div class="step reveal delay-2">
-        <div class="step-num">2</div>
-        <h3>Informe o endereço</h3>
-        <p>Preencha só nome, telefone e endereço de entrega. Nenhum dado de pagamento.</p>
-      </div>
-      <div class="step reveal delay-3">
-        <div class="step-num">3</div>
-        <h3>Nós enviamos</h3>
-        <p>Seu pedido é processado e enviado em até 24h úteis com código de rastreio.</p>
-      </div>
-      <div class="step reveal delay-4">
-        <div class="step-num">4</div>
-        <h3>Pague na entrega</h3>
-        <p>O entregador chega na sua casa e você paga em dinheiro. Simples assim!</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRODUTOS ===== -->
-<section id="produtos" style="padding-top: 60px; padding-bottom: 0;">
-  <div class="container" style="text-align:center; padding-bottom: 48px;">
-    <div class="section-tag reveal">Nossos produtos</div>
-    <h2 class="section-title reveal">3 Produtos. 1 Missão:<br>Transformar Vidas 💚</h2>
-    <p class="section-sub reveal" style="margin:0 auto;">Selecionados entre os mais vendidos do Brasil em 2026. Alta qualidade, preço justo e você ainda paga só na entrega.</p>
-  </div>
-</section>
+<hr class="section-divider">
 
 <!-- PRODUTO 1: JOELHEIRA -->
-<section class="product-section" id="joelheira">
-  <div class="container">
-    <div class="product-grid">
-      <div class="product-img-wrap reveal-left">
-        <img
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80"
-          alt="Mulher usando joelheira ortopédica durante exercício"
-          loading="lazy"
-        />
-        <span class="product-badge">Campeão de Vendas</span>
-        <span class="product-rank">🏆 3ª mais vendida Logzz</span>
-      </div>
-      <div class="product-content reveal-right">
-        <div class="prod-tag">Produto 01 — Saúde & Bem-estar</div>
-        <h2>Joelheira Ortopédica<br><span style="color:var(--green)">Premium</span></h2>
-        <p class="prod-desc">Indicada por fisioterapeutas para dores, inchaço, lesões e pós-cirurgia. Compressão graduada que estabiliza o joelho durante qualquer atividade — desde caminhadas até esportes intensos.</p>
-        <ul class="benefits">
-          <li>Alivia dores, inchaços e desconfortos no joelho</li>
-          <li>Ideal para pós-cirurgia, artrite e artrose</li>
-          <li>Suporte completo para esportes e exercícios</li>
-          <li>Tamanho único — se adapta de 60 a 120kg</li>
-          <li>Material respirável, lavável e durável</li>
-          <li>+1.921 vendedores confiando neste produto</li>
-        </ul>
-        <div class="price-box">
-          <div class="price-old">De R$147,00</div>
-          <div class="price-main">R$ 97,00</div>
-          <div class="price-inst">ou 12x de R$ 8,08 sem juros</div>
-          <div class="price-cod">🚚 Disponível para Pague na Entrega</div>
+<section class="prod-section" id="joelheira">
+  <div class="prod-grid">
+    <div class="prod-img-wrap reveal-left">
+      <div class="prod-img-glow"></div>
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260223-051524pro8xlev.jpeg"
+           alt="Joelheira Ortopedica Premium">
+    </div>
+    <div class="prod-content reveal-right">
+      <div class="section-eyebrow">Produto 01</div>
+      <h2>Joelheira Ortopedica<br>de Compressao Premium</h2>
+      <p class="prod-tagline">
+        Sua dor de joelho nao vai sumir sozinha. A joelheira de compressao alivia a dor, da suporte real e permite voce se mover com confianca de novo.
+      </p>
+      <ul class="prod-benefits">
+        <li><span class="check-ico">&#10003;</span>Compressao graduada que alivia dor e inchaço imediatamente</li>
+        <li><span class="check-ico">&#10003;</span>Ideal para artrite, pos-cirurgia e lesoes no joelho</li>
+        <li><span class="check-ico">&#10003;</span>Funciona em esportes, academia e no dia a dia</li>
+        <li><span class="check-ico">&#10003;</span>Tamanho unico - cobre de 60 a 120 kg</li>
+        <li><span class="check-ico">&#10003;</span>Material resistente e de alta durabilidade</li>
+      </ul>
+      <div class="prod-price-box">
+        <div>
+          <div class="prod-price-main">R$ 97,00</div>
+          <div class="prod-price-inst">ou 4x de R$ 24,25 sem juros</div>
         </div>
-        <a href="#pedido" class="btn-cta" style="display:inline-flex;">
-          🦵 Pedir Joelheira — Pague na Entrega
-        </a>
+        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
+      <a href="LINK_CHECKOUT_JOELHEIRA" class="btn-buy btn-pulse">
+        &#128722; Quero minha Joelheira
+      </a>
+      <p class="prod-stock-note">Estoque limitado - <span>1.929 pessoas</span> tambem querem este produto</p>
     </div>
   </div>
 </section>
+
+<hr class="section-divider">
 
 <!-- PRODUTO 2: CLAREADOR -->
-<section class="product-section" id="clareador">
-  <div class="container">
-    <div class="product-grid reverse">
-      <div class="product-img-wrap reveal-right">
-        <img
-          src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&q=80"
-          alt="Mulher com pele radiante aplicando produto clareador"
-          loading="lazy"
-        />
-        <span class="product-badge">Mais Vendido</span>
-        <span class="product-rank">🔥 2ª mais vendida Logzz</span>
-      </div>
-      <div class="product-content reveal-left">
-        <div class="prod-tag">Produto 02 — Beleza & Skincare</div>
-        <h2>Clareador de Manchas<br><span style="color:var(--green)">100% Natural</span></h2>
-        <p class="prod-desc">Fórmula natural de alta eficácia que age nas manchas de sol, melasma, acne e envelhecimento. Já gerou mais de R$7,5 milhões em vendas no Brasil. O produto de beleza mais procurado do momento.</p>
-        <ul class="benefits">
-          <li>Age em manchas de sol, melasma e acne</li>
-          <li>Fórmula 100% natural, sem parabenos</li>
-          <li>Resultados visíveis a partir da 2ª semana</li>
-          <li>Pele mais radiante, uniforme e jovem</li>
-          <li>+2.453 vendedores — recordista na Logzz!</li>
-          <li>R$7,5 milhões vendidos no WhatsApp</li>
-        </ul>
-        <div class="price-box">
-          <div class="price-old">De R$149,00</div>
-          <div class="price-main">R$ 97,00</div>
-          <div class="price-inst">ou 12x de R$ 8,08 sem juros</div>
-          <div class="price-cod">🚚 Disponível para Pague na Entrega</div>
+<section class="prod-section" id="clareador">
+  <div class="prod-grid rev">
+    <div class="prod-img-wrap reveal-right">
+      <div class="prod-img-glow"></div>
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260223-091813pro807dq.png"
+           alt="Sabonete Clareador de Manchas">
+    </div>
+    <div class="prod-content reveal-left">
+      <div class="section-eyebrow">Produto 02</div>
+      <h2>Sabonete Clareador<br>de Manchas Profundo</h2>
+      <p class="prod-tagline">
+        Manchas no rosto, virilhas e axilas nao precisam ser para sempre. Formula com extrato de Mulateiro, Dolomita e Aroeira age direto na raiz das manchas.
+      </p>
+      <ul class="prod-benefits">
+        <li><span class="check-ico">&#10003;</span>Clareia melasma, manchas de sol e escurecimento</li>
+        <li><span class="check-ico">&#10003;</span>Trata virilhas, axilas e areas sensiveis com seguranca</li>
+        <li><span class="check-ico">&#10003;</span>Formula natural sem parabenos</li>
+        <li><span class="check-ico">&#10003;</span>150g - uso continuo por ate 2 meses</li>
+        <li><span class="check-ico">&#10003;</span>Resultados visiveis desde a primeira semana</li>
+      </ul>
+      <div class="prod-price-box">
+        <div>
+          <div class="prod-price-main">R$ 97,00</div>
+          <div class="prod-price-inst">ou 4x de R$ 24,25 sem juros</div>
         </div>
-        <a href="#pedido" class="btn-cta" style="display:inline-flex;">
-          ✨ Pedir Clareador — Pague na Entrega
-        </a>
+        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
+      <a href="LINK_CHECKOUT_CLAREADOR" class="btn-buy btn-pulse">
+        &#10024; Quero meu Clareador
+      </a>
+      <p class="prod-stock-note">Estoque limitado - <span>produto campeao</span> em vendas este mes</p>
     </div>
   </div>
 </section>
 
-<!-- PRODUTO 3: PISTOLA MASSAGEADORA -->
-<section class="product-section" id="massageadora">
-  <div class="container">
-    <div class="product-grid">
-      <div class="product-img-wrap reveal-left">
-        <img
-          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80"
-          alt="Pessoa usando pistola massageadora nos músculos das costas"
-          loading="lazy"
-        />
-        <span class="product-badge">Trending 2026</span>
-        <span class="product-rank">💪 18ª mais vendida Logzz</span>
-      </div>
-      <div class="product-content reveal-right">
-        <div class="prod-tag">Produto 03 — Recuperação Muscular</div>
-        <h2>Pistola Massageadora<br><span style="color:var(--green)">Profissional</span></h2>
-        <p class="prod-desc">Tecnologia de percussão profissional que alivia tensão muscular, acelera a recuperação pós-treino e elimina dores nas costas, pescoço e ombros. Silenciosa e portátil para usar em qualquer lugar.</p>
-        <ul class="benefits">
-          <li>Alivia dores musculares em minutos</li>
-          <li>Acelera recuperação pós-treino em 60%</li>
-          <li>Combate tensão do trabalho home office</li>
-          <li>Silenciosa — não incomoda ninguém</li>
-          <li>Portátil com bateria de longa duração</li>
-          <li>Recomendada por fisioterapeutas</li>
-        </ul>
-        <div class="price-box">
-          <div class="price-old">De R$199,00</div>
-          <div class="price-main">R$ 127,00</div>
-          <div class="price-inst">ou 12x de R$ 10,58 sem juros</div>
-          <div class="price-cod">🚚 Disponível para Pague na Entrega</div>
+<hr class="section-divider">
+
+<!-- PRODUTO 3: PISTOLA -->
+<section class="prod-section" id="pistola">
+  <div class="prod-grid">
+    <div class="prod-img-wrap reveal-left">
+      <div class="prod-img-glow"></div>
+      <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260220-133903pro806w5.jpg"
+           alt="Pistola Massageadora">
+    </div>
+    <div class="prod-content reveal-right">
+      <div class="section-eyebrow">Produto 03</div>
+      <h2>Pistola Massageadora<br>Muscular Profissional</h2>
+      <p class="prod-tagline">
+        Tensao nas costas, pescoco e ombros acumulando ha dias? A pistola massageadora elimina tensao muscular em minutos, sem precisar de massagista.
+      </p>
+      <ul class="prod-benefits">
+        <li><span class="check-ico">&#10003;</span>4 cabecotes intercambiaveis para diferentes musculos</li>
+        <li><span class="check-ico">&#10003;</span>Alivia tensao, dor pos-treino e rigidez muscular</li>
+        <li><span class="check-ico">&#10003;</span>Carregamento USB - use em casa ou no trabalho</li>
+        <li><span class="check-ico">&#10003;</span>Silenciosa e potente - tecnologia percussiva</li>
+        <li><span class="check-ico">&#10003;</span>Inclui manual de uso e cabo carregador</li>
+      </ul>
+      <div class="prod-price-box">
+        <div>
+          <div class="prod-price-main">R$ 127,00</div>
+          <div class="prod-price-inst">ou 4x de R$ 31,75 sem juros</div>
         </div>
-        <a href="#pedido" class="btn-cta" style="display:inline-flex;">
-          💆 Pedir Massageadora — Pague na Entrega
-        </a>
+        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
+      <a href="LINK_CHECKOUT_MASSAGEADORA" class="btn-buy btn-pulse">
+        &#128170; Quero minha Pistola
+      </a>
+      <p class="prod-stock-note">Tendencia 2025 - <span>esgotando rapido</span> nas lojas fisicas</p>
     </div>
   </div>
 </section>
 
-<!-- ===== TESTIMONIALS ===== -->
-<section class="testimonials-section" id="depoimentos">
-  <div class="container">
-    <div class="section-tag reveal">Depoimentos reais</div>
-    <h2 class="section-title reveal">O que nossos clientes dizem 💬</h2>
-    <p class="section-sub reveal">+15.000 pessoas já transformaram sua saúde e beleza. Veja o que elas falam.</p>
+<hr class="section-divider">
 
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card reveal delay-1">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">A joelheira chegou super rápido e me salvou! Tenho artrose há anos e essa joelheira me deu minha vida de volta. Melhor compra do ano. Paguei na entrega sem nenhum problema!</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=47" alt="Foto de Maria Silva" />
-          <div>
-            <div class="t-name">Maria Silva</div>
-            <div class="t-location">São Paulo, SP</div>
-            <div class="t-product">🦵 Joelheira Premium</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal delay-2">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">Não acreditava que ia funcionar mas resolvi testar pagando na entrega mesmo. Em 15 dias minhas manchas clararam muito! Já pedi mais 2 unidades pro meu estoque pessoal.</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=32" alt="Foto de Camila Ferreira" />
-          <div>
-            <div class="t-name">Camila Ferreira</div>
-            <div class="t-location">Belo Horizonte, MG</div>
-            <div class="t-product">✨ Clareador de Manchas</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal delay-3">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">A pistola massageadora é incrível! Trabalho home office e tinha dores horríveis no pescoço. Agora uso todo dia antes de dormir. Silenciosa demais, meu marido não ouve nada!</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=5" alt="Foto de Juliana Costa" />
-          <div>
-            <div class="t-name">Juliana Costa</div>
-            <div class="t-location">Curitiba, PR</div>
-            <div class="t-product">💆 Pistola Massageadora</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal delay-1">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">Eu tinha muito medo de comprar pela internet. Com o pague na entrega ganhei coragem. Comprei a joelheira, chegou em 2 dias, paguei em dinheiro. Produto excelente, já indiquei pra toda família.</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=9" alt="Foto de Roberto Mendes" />
-          <div>
-            <div class="t-name">Roberto Mendes</div>
-            <div class="t-location">Salvador, BA</div>
-            <div class="t-product">🦵 Joelheira Premium</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal delay-2">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">Comprei os 3 produtos de uma vez pagando na entrega. Totalizei R$321 e valeu cada centavo! O clareador está dando resultado, a joelheira minha mãe adorou e a pistola eu e meu marido usamos toda semana.</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=20" alt="Foto de Fernanda Oliveira" />
-          <div>
-            <div class="t-name">Fernanda Oliveira</div>
-            <div class="t-location">Fortaleza, CE</div>
-            <div class="t-product">🛒 Kit 3 produtos</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal delay-3">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-text">Sou atleta amador e a pistola massageadora virou minha aliada pós-treino. Recuperação muito mais rápida. Entrega pontual e super bem embalado. Com certeza vou comprar de novo!</p>
-        <div class="t-author">
-          <img class="t-avatar" src="https://i.pravatar.cc/44?img=15" alt="Foto de Lucas Ribeiro" />
-          <div>
-            <div class="t-name">Lucas Ribeiro</div>
-            <div class="t-location">Porto Alegre, RS</div>
-            <div class="t-product">💆 Pistola Massageadora</div>
-          </div>
-        </div>
-      </div>
-
+<!-- COMO FUNCIONA -->
+<section class="how-section">
+  <div class="reveal">
+    <div class="section-eyebrow" style="text-align:center">Simples assim</div>
+    <h2>Como funciona o Pague na Entrega?</h2>
+    <p>Sem cartao. Sem antecipacao. Sem risco.</p>
+  </div>
+  <div class="how-steps reveal">
+    <div class="how-step" data-arrow="&rarr;">
+      <div class="how-step-num">1</div>
+      <h3>Escolha o produto</h3>
+      <p>Selecione e clique em comprar</p>
+    </div>
+    <div class="how-step" data-arrow="&rarr;">
+      <div class="how-step-num">2</div>
+      <h3>Informe o endereco</h3>
+      <p>Preencha seus dados de entrega</p>
+    </div>
+    <div class="how-step" data-arrow="&rarr;">
+      <div class="how-step-num">3</div>
+      <h3>Aguarde a entrega</h3>
+      <p>3 a 5 dias uteis para todo Brasil</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">4</div>
+      <h3>Pague ao receber</h3>
+      <p>So pague quando tiver o produto</p>
     </div>
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
-<section id="faq">
-  <div class="container" style="max-width:760px;">
-    <div class="section-tag reveal">Dúvidas frequentes</div>
-    <h2 class="section-title reveal">Perguntas & Respostas</h2>
+<hr class="section-divider">
 
-    <div class="faq-list">
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Como funciona o "Pague na Entrega"?
-          <span class="arrow">+</span>
-        </div>
-        <div class="faq-a">
-          Você faz o pedido normalmente informando apenas seu endereço e telefone. Quando o entregador chegar na sua casa, você paga o valor do produto em dinheiro. Simples, seguro e sem riscos!
-        </div>
-      </div>
-      <div class="faq-item reveal delay-1">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Quanto tempo demora para chegar?
-          <span class="arrow">+</span>
-        </div>
-        <div class="faq-a">
-          A média de entrega é de 2 a 5 dias úteis dependendo da sua região. Assim que seu pedido for enviado, você recebe o código de rastreio pelo WhatsApp para acompanhar em tempo real.
-        </div>
-      </div>
-      <div class="faq-item reveal delay-2">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Posso comprar mais de um produto?
-          <span class="arrow">+</span>
-        </div>
-        <div class="faq-a">
-          Sim! Você pode comprar os 3 produtos juntos e pagar tudo de uma vez na entrega. Muitos clientes levam todos para aproveitar ao máximo e até para presentear alguém da família.
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="reveal">
+    <h2>O que nossos clientes dizem</h2>
+    <p class="sub">Mais de 15.000 pedidos entregues em todo o Brasil</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"Recebi a joelheira e ja to usando. A dor que sentia ao subir escada melhorou muito desde o primeiro dia. Valeu demais comprar assim, sem ter que pagar antes."</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=47" alt="Mariana">
+        <div>
+          <div class="test-name">Mariana S.</div>
+          <div class="test-location">Sao Paulo, SP</div>
+          <div class="test-tag">Joelheira</div>
         </div>
       </div>
-      <div class="faq-item reveal delay-3">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          E se eu não gostar do produto?
-          <span class="arrow">+</span>
-        </div>
-        <div class="faq-a">
-          Caso não esteja satisfeito, entre em contato com nosso suporte em até 7 dias após o recebimento. Analisamos cada caso individualmente e trabalhamos para garantir sua satisfação total.
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"Desconfiava no inicio porque era pagar na entrega. Mas chegou em 4 dias, produto lacrado. O clareador ta funcionando na axila, ja ve diferenca. Recomendo!"</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=32" alt="Camila">
+        <div>
+          <div class="test-name">Camila R.</div>
+          <div class="test-location">Belo Horizonte, MG</div>
+          <div class="test-tag">Clareador</div>
         </div>
       </div>
-      <div class="faq-item reveal delay-4">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          O frete é grátis?
-          <span class="arrow">+</span>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"A pistola massageadora e incrivel. Uso todo dia apos o treino nas costas e pescoco. Minha esposa tambem ta usando. Produto de qualidade, entrega rapida."</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=12" alt="Ricardo">
+        <div>
+          <div class="test-name">Ricardo M.</div>
+          <div class="test-location">Curitiba, PR</div>
+          <div class="test-tag">Pistola</div>
         </div>
-        <div class="faq-a">
-          Sim! Oferecemos frete grátis para todo o Brasil. O valor que você vê na página é o valor final que você paga na entrega, sem surpresas.
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"Minha mae de 62 anos comprou a joelheira e nao tira mais. O pague na entrega deu muita seguranca pra ela. Disse que era o melhor presente que ja ganhou."</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=9" alt="Fernanda">
+        <div>
+          <div class="test-name">Fernanda O.</div>
+          <div class="test-location">Salvador, BA</div>
+          <div class="test-tag">Joelheira</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"Ja comprei o clareador 2x. Manchas do melasma clarearam visivelmente em 3 semanas. Melhor produto que usei ate hoje, ja tentei varias marcas caras."</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=20" alt="Patricia">
+        <div>
+          <div class="test-name">Patricia L.</div>
+          <div class="test-location">Fortaleza, CE</div>
+          <div class="test-tag">Clareador</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="test-text">"Comprei a pistola achando que nao ia durar. Me surpreendi! Poderosa, silenciosa e os cabecotes sao otimos. Entrega foi em 3 dias. Vale muito o preco."</p>
+      <div class="test-author">
+        <img src="https://i.pravatar.cc/40?img=15" alt="Bruno">
+        <div>
+          <div class="test-name">Bruno T.</div>
+          <div class="test-location">Rio de Janeiro, RJ</div>
+          <div class="test-tag">Pistola</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA FINAL ===== -->
-<section class="cta-final" id="pedido">
-  <div class="container">
-    <div class="section-tag reveal">Não perca essa oportunidade</div>
-    <h2 class="reveal">Pronto para transformar<br><span style="color:var(--green)">sua saúde e beleza?</span></h2>
-    <p class="reveal">Sem riscos. Sem cartão. Você paga só quando o produto chegar na sua porta. Estoque limitado!</p>
-    <div class="cta-buttons reveal">
-      <a href="#joelheira" class="btn-cta">🦵 Pedir Joelheira — R$97</a>
-      <a href="#clareador" class="btn-cta">✨ Pedir Clareador — R$97</a>
-      <a href="#massageadora" class="btn-cta">💆 Pedir Massageadora — R$127</a>
-    </div>
-    <p class="reveal" style="margin-top:24px; font-size:0.85rem; color:var(--muted);">
-      🔒 Pague na entrega &nbsp;|&nbsp; 🚚 Frete Grátis &nbsp;|&nbsp; ⭐ +15.000 clientes satisfeitos
-    </p>
+<!-- FAQ -->
+<section class="faq-section">
+  <h2 class="reveal">Perguntas frequentes</h2>
+  <div class="faq-item reveal" onclick="toggleFaq(this)">
+    <div class="faq-q">Como funciona o pague na entrega? <span class="faq-arrow">&#8964;</span></div>
+    <div class="faq-a">Voce faz o pedido normalmente, informando nome e endereco. Seu produto e enviado e voce paga diretamente ao entregador quando receber. Nao ha nenhuma cobranca antes da entrega.</div>
+  </div>
+  <div class="faq-item reveal" onclick="toggleFaq(this)">
+    <div class="faq-q">Qual o prazo de entrega? <span class="faq-arrow">&#8964;</span></div>
+    <div class="faq-a">O prazo medio e de 3 a 5 dias uteis para todo o Brasil. Em regioes mais distantes pode levar ate 7 dias uteis.</div>
+  </div>
+  <div class="faq-item reveal" onclick="toggleFaq(this)">
+    <div class="faq-q">E seguro comprar assim? <span class="faq-arrow">&#8964;</span></div>
+    <div class="faq-a">Sim! O pague na entrega e o modelo mais seguro para o comprador, pois voce so paga depois de ter o produto fisicamente nas maos e conferir.</div>
+  </div>
+  <div class="faq-item reveal" onclick="toggleFaq(this)">
+    <div class="faq-q">Posso trocar se nao gostar? <span class="faq-arrow">&#8964;</span></div>
+    <div class="faq-a">Sim. Temos politica de troca garantida. Se o produto chegar com defeito ou diferente do anunciado, entre em contato e resolveremos sem burocracia.</div>
+  </div>
+  <div class="faq-item reveal" onclick="toggleFaq(this)">
+    <div class="faq-q">Posso comprar mais de um produto? <span class="faq-arrow">&#8964;</span></div>
+    <div class="faq-a">Sim! Voce pode fazer pedidos separados para cada produto. Cada pedido tera seu proprio codigo de rastreamento e prazo de entrega.</div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="reveal">
+    <h2>Pronto para experimentar<br>sem risco nenhum?</h2>
+    <p>Escolha seu produto, receba em casa e pague so quando chegar. Frete gratis para todo o Brasil.</p>
+  </div>
+  <div class="cta-btns reveal">
+    <a href="#joelheira" class="btn-cta-final primary">Joelheira - R$97</a>
+    <a href="#clareador" class="btn-cta-final outline">Clareador - R$97</a>
+    <a href="#pistola" class="btn-cta-final outline">Pistola - R$127</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p><strong>Saúde & Beleza Express</strong> — Todos os direitos reservados © 2026</p>
-  <p style="margin-top:8px;">Produtos sujeitos à disponibilidade de estoque. Imagens meramente ilustrativas.</p>
+  <div class="footer-coinzz">
+    Checkout processado por
+    <span class="coinzz-badge">COINZZ</span>
+    Plataforma parceira verificada
+  </div>
+  <div class="footer-links">
+    <a href="#">Politica de Privacidade</a>
+    <a href="#">Termos de Uso</a>
+    <a href="#">Trocas e Devolucoes</a>
+    <a href="#">Contato</a>
+  </div>
+  <p class="footer-copy">2025 SaudeExpress - Todos os direitos reservados</p>
 </footer>
 
 <!-- STICKY MOBILE -->
-<div class="sticky-mob">
-  <a href="#joelheira" class="btn-cta" style="font-size:0.75rem; padding:12px 10px;">🦵 Joelheira R$97</a>
-  <a href="#clareador" class="btn-cta" style="font-size:0.75rem; padding:12px 10px;">✨ Clareador R$97</a>
-  <a href="#massageadora" class="btn-cta" style="font-size:0.75rem; padding:12px 10px;">💆 Massageadora R$127</a>
+<div class="sticky-mobile">
+  <div class="sticky-mobile-btns">
+    <a href="#joelheira" class="sm-btn-1">Joelheira R$97</a>
+    <a href="#clareador" class="sm-btn-2">Clareador R$97</a>
+    <a href="#pistola" class="sm-btn-3">Pistola R$127</a>
+  </div>
 </div>
 
 <script>
-  // ===== SCROLL REVEAL =====
-  const observer = new IntersectionObserver((entries) => {
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-
-  // ===== FAQ TOGGLE =====
-  function toggleFaq(el) {
-    const item = el.parentElement;
+  function toggleFaq(item) {
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  function checkSticky() {
+    const s = document.querySelector('.sticky-mobile');
+    if (s) s.style.display = window.innerWidth > 768 ? 'none' : 'block';
+  }
+  window.addEventListener('resize', checkSticky);
+  checkSticky();
 </script>
 </body>
 </html>
