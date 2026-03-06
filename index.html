@@ -87,10 +87,16 @@
     .hero {
       padding: 72px 24px 56px; text-align: center;
       position: relative; overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1600&q=80');
+      background-size: cover;
+      background-position: center 25%;
+      background-repeat: no-repeat;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,230,118,.1) 0%, transparent 70%);
+      background:
+        linear-gradient(to bottom, rgba(11,11,16,0.82) 0%, rgba(11,11,16,0.70) 40%, rgba(11,11,16,0.88) 100%),
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,230,118,.10) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
@@ -522,7 +528,7 @@
     </a>
     <a href="#pistola" class="hero-prod-chip">
       <img src="https://logzz-s3.s3.us-east-2.amazonaws.com/uploads/files/products/20260220-133903pro806w5.jpg" alt="Pistola">
-      Pistola &mdash; R$127
+      Pistola &mdash; R$119,97
     </a>
   </div>
 </section>
@@ -591,16 +597,16 @@
           <div class="qty-card" data-qty="2" onclick="selectQty('joelheira',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
-            <div class="qty-price-unit">R$ 85/un</div>
-            <div class="qty-price-total">R$ 170,00 total</div>
-            <div class="qty-save">Economize R$ 24</div>
+            <div class="qty-price-unit">R$ 59,99/un</div>
+            <div class="qty-price-total">R$ 119,97 total</div>
+            <div class="qty-save">Economize R$ 74,03</div>
           </div>
-          <div class="qty-card" data-qty="3" onclick="selectQty('joelheira',3)" role="button" aria-pressed="false" tabindex="0">
+          <div class="qty-card" data-qty="3" onclick="selectQty('joelheira',3)" role="button" aria-pressed="false" tabindex="0" style="display:none">
             <div class="qty-tag value">Melhor Valor</div>
             <div class="qty-num">3 unidades</div>
-            <div class="qty-price-unit">R$ 75/un</div>
-            <div class="qty-price-total">R$ 225,00 total</div>
-            <div class="qty-save">Economize R$ 66</div>
+            <div class="qty-price-unit">R$ 65,67/un</div>
+            <div class="qty-price-total">R$ 197,00 total</div>
+            <div class="qty-save">Economize R$ 94,00</div>
           </div>
         </div>
       </div>
@@ -612,7 +618,7 @@
         </div>
         <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
-      <a href="LINK_JOELHEIRA_1x" class="btn-buy btn-pulse" id="btn-joelheira">
+      <a href="https://app.coinzz.com.br/checkout/joelheira-premium-vne4y-1291" class="btn-buy btn-pulse" id="btn-joelheira">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="btn-text">Quero 1 Joelheira &mdash; R$ 97,00</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -659,16 +665,16 @@
           <div class="qty-card" data-qty="2" onclick="selectQty('clareador',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
-            <div class="qty-price-unit">R$ 85/un</div>
-            <div class="qty-price-total">R$ 170,00 total</div>
-            <div class="qty-save">Economize R$ 24</div>
+            <div class="qty-price-unit">R$ 62,49/un</div>
+            <div class="qty-price-total">R$ 124,97 total</div>
+            <div class="qty-save">Economize R$ 69,03</div>
           </div>
           <div class="qty-card" data-qty="3" onclick="selectQty('clareador',3)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag value">Melhor Valor</div>
             <div class="qty-num">3 unidades</div>
-            <div class="qty-price-unit">R$ 75/un</div>
-            <div class="qty-price-total">R$ 225,00 total</div>
-            <div class="qty-save">Economize R$ 66</div>
+            <div class="qty-price-unit">R$ 65,67/un</div>
+            <div class="qty-price-total">R$ 197,00 total</div>
+            <div class="qty-save">Economize R$ 94,00</div>
           </div>
         </div>
       </div>
@@ -680,7 +686,7 @@
         </div>
         <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
-      <a href="LINK_CLAREADOR_1x" class="btn-buy btn-pulse" id="btn-clareador">
+      <a href="https://app.coinzz.com.br/checkout/sabonete-em-pasta-clareador-moajy-1249" class="btn-buy btn-pulse" id="btn-clareador">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="btn-text">Quero 1 Clareador &mdash; R$ 97,00</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -720,18 +726,18 @@
         <div class="qty-cards">
           <div class="qty-card active" data-qty="1" onclick="selectQty('pistola',1)" role="button" aria-pressed="true" tabindex="0">
             <div class="qty-num">1 unidade</div>
-            <div class="qty-price-unit">R$ 127</div>
-            <div class="qty-price-total">R$ 127,00 total</div>
+            <div class="qty-price-unit">R$ 119,97</div>
+            <div class="qty-price-total">R$ 119,97 total</div>
             <div class="qty-save qty-save-hidden">-</div>
           </div>
           <div class="qty-card" data-qty="2" onclick="selectQty('pistola',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
-            <div class="qty-price-unit">R$ 110/un</div>
-            <div class="qty-price-total">R$ 220,00 total</div>
-            <div class="qty-save">Economize R$ 34</div>
+            <div class="qty-price-unit">R$ 98,50/un</div>
+            <div class="qty-price-total">R$ 197,00 total</div>
+            <div class="qty-save">Economize R$ 42,94</div>
           </div>
-          <div class="qty-card" data-qty="3" onclick="selectQty('pistola',3)" role="button" aria-pressed="false" tabindex="0">
+          <div class="qty-card" data-qty="3" onclick="selectQty('pistola',3)" role="button" aria-pressed="false" tabindex="0" style="display:none">
             <div class="qty-tag value">Melhor Valor</div>
             <div class="qty-num">3 unidades</div>
             <div class="qty-price-unit">R$ 95/un</div>
@@ -743,14 +749,14 @@
 
       <div class="prod-price-box">
         <div>
-          <div class="prod-price-main" id="price-pistola">R$ 127,00</div>
-          <div class="prod-price-inst" id="inst-pistola">ou 4x de R$ 31,75 sem juros</div>
+          <div class="prod-price-main" id="price-pistola">R$ 119,97</div>
+          <div class="prod-price-inst" id="inst-pistola">ou 4x de R$ 29,99 sem juros</div>
         </div>
         <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
-      <a href="LINK_PISTOLA_1x" class="btn-buy btn-pulse" id="btn-pistola">
+      <a href="https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-1292" class="btn-buy btn-pulse" id="btn-pistola">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span class="btn-text">Quero 1 Pistola &mdash; R$ 127,00</span>
+        <span class="btn-text">Quero 1 Pistola &mdash; R$ 119,97</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
       <div class="prod-social-proof">
@@ -832,7 +838,7 @@
   <div class="cta-btns reveal">
     <a href="#joelheira" class="btn-cta primary">Joelheira &mdash; R$97</a>
     <a href="#clareador" class="btn-cta outline">Clareador &mdash; R$97</a>
-    <a href="#pistola"   class="btn-cta outline">Pistola &mdash; R$127</a>
+    <a href="#pistola"   class="btn-cta outline">Pistola &mdash; R$119,97</a>
   </div>
 </section>
 
@@ -858,7 +864,7 @@
   <div class="sticky-btns">
     <a href="#joelheira" class="sm-btn-1">Joelheira R$97</a>
     <a href="#clareador" class="sm-btn-2">Clareador R$97</a>
-    <a href="#pistola"   class="sm-btn-3">Pistola R$127</a>
+    <a href="#pistola"   class="sm-btn-3">Pistola R$119,97</a>
   </div>
 </div>
 
@@ -866,19 +872,19 @@
   /* ─── PRODUCT DATA ─── */
   var products = {
     joelheira: { tiers: {
-      1: { label: '1 Joelheira',  total: 97,   inst: '4x de R$ 24,25', link: 'LINK_JOELHEIRA_1x' },
-      2: { label: '2 Joelheiras', total: 170,  inst: '4x de R$ 42,50', link: 'LINK_JOELHEIRA_2x' },
-      3: { label: '3 Joelheiras', total: 225,  inst: '4x de R$ 56,25', link: 'LINK_JOELHEIRA_3x' }
+      1: { label: '1 Joelheira',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/joelheira-premium-vne4y-1291' },
+      2: { label: '2 Joelheiras', total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291' },
+      3: { label: '2 Joelheiras', total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291' }
     }},
     clareador: { tiers: {
-      1: { label: '1 Clareador',  total: 97,   inst: '4x de R$ 24,25', link: 'LINK_CLAREADOR_1x' },
-      2: { label: '2 Claradores', total: 170,  inst: '4x de R$ 42,50', link: 'LINK_CLAREADOR_2x' },
-      3: { label: '3 Claradores', total: 225,  inst: '4x de R$ 56,25', link: 'LINK_CLAREADOR_3x' }
+      1: { label: '1 Clareador',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/sabonete-em-pasta-clareador-moajy-1249' },
+      2: { label: '2 Claradores', total: 124.97, inst: '4x de R$ 31,24', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---2-unidades-1249' },
+      3: { label: '3 Claradores', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---3-unidades---tratamento-completo-1249' }
     }},
     pistola: { tiers: {
-      1: { label: '1 Pistola',  total: 127,  inst: '4x de R$ 31,75', link: 'LINK_PISTOLA_1x' },
-      2: { label: '2 Pistolas', total: 220,  inst: '4x de R$ 55,00', link: 'LINK_PISTOLA_2x' },
-      3: { label: '3 Pistolas', total: 285,  inst: '4x de R$ 71,25', link: 'LINK_PISTOLA_3x' }
+      1: { label: '1 Pistola',  total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-1292' },
+      2: { label: '2 Pistolas', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292' },
+      3: { label: '2 Pistolas', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292' }
     }}
   };
 
