@@ -3,25 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saude e Bem-Estar Express — Pague na Entrega</title>
-  <meta name="description" content="Joelheira Ortopedica, Clareador de Manchas e Pistola Massageadora. Frete gratis. Pague so quando receber!">
+  <title>Saude e Bem-Estar Express — Pague na Entrega | Frete Gratis</title>
+  <meta name="description" content="Joelheira Ortopedica, Clareador de Manchas e Pistola Massageadora. Frete gratis. Pague so quando receber! +15.000 clientes satisfeitos.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Saude e Bem-Estar Express — Pague na Entrega" />
+  <meta property="og:description" content="Joelheira, Clareador e Pistola Massageadora. Frete gratis. Pague so quando receber!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#00e676" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Rubik:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0b0b10;
-      --surface: #13131c;
-      --surface2: #1c1c28;
-      --border: #2a2a3c;
+      --bg: #080810;
+      --surface: #0f0f1a;
+      --surface2: #171726;
+      --surface3: #1e1e32;
+      --border: #252540;
+      --border2: #2e2e50;
       --green: #00e676;
       --green2: #00c853;
-      --gold: #ffc107;
-      --red: #ff4757;
-      --text: #eeeef5;
-      --text2: #c8c8dc;
-      --muted: #7878a0;
+      --green-glow: rgba(0,230,118,.18);
+      --purple: #7c3aed;
+      --purple2: #6d28d9;
+      --purple-glow: rgba(124,58,237,.15);
+      --gold: #fbbf24;
+      --red: #f43f5e;
+      --text: #f0f0fa;
+      --text2: #c4c4de;
+      --muted: #6868a0;
       --radius: 14px;
+      --radius-lg: 22px;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -34,26 +51,16 @@
     h1, h2, h3, h4 { font-family: 'Rubik', sans-serif; }
 
     /* ─── TOPBAR MARQUEE ─── */
-    .topbar { background: var(--green); color: #000; overflow: hidden; padding: 9px 0; }
-    .topbar-track {
-      display: flex;
-      animation: marquee 22s linear infinite;
-      white-space: nowrap;
-    }
-    .topbar-track span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 0 28px;
-      flex-shrink: 0;
-    }
+    .topbar { background: linear-gradient(90deg,var(--green),#00d4aa,var(--green)); background-size:200%; animation: topbar-shift 4s linear infinite; color: #000; overflow: hidden; padding: 9px 0; }
+    @keyframes topbar-shift { to { background-position: 200%; } }
+    .topbar-track { display: flex; animation: marquee 22s linear infinite; white-space: nowrap; }
+    .topbar-track span { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; padding: 0 28px; flex-shrink: 0; }
     .topbar-track span::before { content: '★'; font-size: 0.58rem; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .topbar-track { animation: none; justify-content: center; } }
+    @media (prefers-reduced-motion: reduce) { .topbar-track { animation: none; justify-content: center; } .topbar { animation: none; } }
+
+    /* ─── SCROLL PROGRESS ─── */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 9999; background: linear-gradient(90deg, var(--green), var(--purple)); width: 0%; transition: width .1s linear; box-shadow: 0 0 10px rgba(0,230,118,.5); }
 
 
     /* ─── HERO ─── */
@@ -67,17 +74,22 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 0;
-      background:
-        linear-gradient(to bottom, rgba(11,11,16,0.72) 0%, rgba(11,11,16,0.60) 40%, rgba(11,11,16,0.88) 100%),
-        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,230,118,.08) 0%, transparent 70%);
+      background: linear-gradient(to bottom, rgba(8,8,16,0.82) 0%, rgba(8,8,16,0.60) 40%, rgba(8,8,16,0.94) 100%),
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,230,118,.1) 0%, transparent 70%);
       pointer-events: none;
     }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(90px); opacity: 0.38; }
+    .hero-orb-1 { width: 520px; height: 520px; top: -140px; right: -100px; background: radial-gradient(circle, var(--purple) 0%, transparent 70%); animation: orb-float 9s ease-in-out infinite; }
+    .hero-orb-2 { width: 420px; height: 420px; bottom: -110px; left: -70px; background: radial-gradient(circle, var(--green) 0%, transparent 70%); animation: orb-float 12s ease-in-out infinite reverse; }
+    @keyframes orb-float { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-32px) scale(1.06);} }
+    @media (prefers-reduced-motion: reduce) { .hero-orb { animation: none; } }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,230,118,.12); border: 1px solid rgba(0,230,118,.3);
-      color: var(--green); padding: 8px 18px; border-radius: 30px;
+      background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.35);
+      color: #c4b5fd; padding: 8px 18px; border-radius: 30px;
       font-size: 0.78rem; font-weight: 700; margin-bottom: 28px; letter-spacing: 0.04em;
       position: relative; z-index: 1;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     }
     .hero h1 {
       font-size: clamp(2rem, 6vw, 3.8rem); font-weight: 900;
@@ -96,33 +108,36 @@
     /* COD Strip */
     .cod-strip {
       display: inline-flex; align-items: center; gap: 20px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 18px; padding: 20px 32px; margin-bottom: 40px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px; padding: 20px 32px; margin-bottom: 40px;
       flex-wrap: wrap; justify-content: center;
       position: relative; z-index: 1;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
     }
     .cod-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; font-weight: 600; }
     .cod-ico {
-      width: 38px; height: 38px; background: rgba(0,230,118,.12);
+      width: 38px; height: 38px; background: rgba(0,230,118,.14);
       border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--green);
+      flex-shrink: 0; color: var(--green); box-shadow: 0 0 12px rgba(0,230,118,.15);
     }
     .cod-ico svg { width: 18px; height: 18px; }
     .cod-lbl { font-size: .72rem; color: var(--muted); line-height: 1; margin-bottom: 2px; }
     .cod-val { font-size: .88rem; font-weight: 700; }
-    .cod-divider { width: 1px; height: 36px; background: var(--border); }
+    .cod-divider { width: 1px; height: 36px; background: var(--glass-border); }
 
     /* Product chips */
     .hero-products { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
     .hero-prod-chip {
       display: flex; align-items: center; gap: 8px;
-      background: var(--surface2); border: 1px solid var(--border);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-radius: 50px; padding: 7px 16px 7px 7px;
       font-size: 0.78rem; font-weight: 700; text-decoration: none;
-      color: var(--text2); transition: all .22s; cursor: pointer;
+      color: var(--text2); transition: all .25s; cursor: pointer;
     }
     .hero-prod-chip img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
-    .hero-prod-chip:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+    .hero-prod-chip:hover { border-color: rgba(0,230,118,.5); color: var(--green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,230,118,.15); }
 
     /* ─── TRUST BAR ─── */
     .trust-bar {
@@ -195,16 +210,17 @@
     }
     .qty-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .qty-card {
-      background: var(--surface); border: 2px solid var(--border);
-      border-radius: 12px; padding: 14px 10px 12px;
+      background: var(--glass); border: 2px solid var(--border2);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: 14px; padding: 14px 10px 12px;
       cursor: pointer; text-align: center;
-      transition: border-color .18s, background .18s, box-shadow .18s, transform .18s;
+      transition: border-color .2s, background .2s, box-shadow .2s, transform .2s;
       position: relative; overflow: hidden; user-select: none;
     }
-    .qty-card:hover { border-color: rgba(0,230,118,.4); background: var(--surface2); transform: translateY(-1px); }
+    .qty-card:hover { border-color: rgba(0,230,118,.4); background: rgba(0,230,118,.04); transform: translateY(-1px); }
     .qty-card.active {
-      border-color: var(--green); background: rgba(0,230,118,.06);
-      box-shadow: 0 0 0 1px var(--green), 0 6px 24px rgba(0,230,118,.12);
+      border-color: var(--green); background: rgba(0,230,118,.07);
+      box-shadow: 0 0 0 1px var(--green), 0 8px 28px rgba(0,230,118,.15);
     }
     .qty-tag {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -230,12 +246,19 @@
       margin-top: 7px; display: inline-block;
     }
     .qty-save-hidden { visibility: hidden; }
+    .qty-price-de {
+      font-size: 0.62rem; color: var(--muted);
+      text-decoration: line-through; opacity: 0.7;
+      margin-bottom: 1px; line-height: 1;
+    }
 
     /* Price box */
     .prod-price-box {
-      background: var(--surface); border: 1px solid var(--border);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px;
       display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
     .prod-price-main {
       font-family: 'Rubik', sans-serif; font-size: 2rem; font-weight: 900;
@@ -251,21 +274,22 @@
     /* Buy Button */
     .btn-buy {
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 17px 24px;
-      background: linear-gradient(135deg, var(--green) 0%, var(--green2) 100%);
-      color: #000; font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 0.97rem;
+      width: 100%; padding: 18px 24px;
+      background: linear-gradient(135deg, var(--green) 0%, #00b896 45%, var(--purple) 100%);
+      background-size: 200% 200%; background-position: 0% 50%;
+      color: #fff; font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 0.97rem;
       border-radius: 50px; text-decoration: none; border: none; cursor: pointer;
-      transition: transform .22s, box-shadow .22s;
+      transition: transform .22s, box-shadow .22s, background-position .4s;
       position: relative; overflow: hidden; letter-spacing: 0.01em;
     }
     .btn-buy svg { width: 18px; height: 18px; flex-shrink: 0; }
     .btn-buy::after {
       content: ''; position: absolute; top: 0; left: -100%; width: 55%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
-      animation: shimmer 2.8s infinite;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      animation: shimmer 2.6s infinite;
     }
     @keyframes shimmer { to { left: 160%; } }
-    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(0,230,118,.38); }
+    .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,230,118,.35), 0 6px 20px rgba(124,58,237,.2); background-position: 100% 50%; color: #fff; }
     .btn-buy:active { transform: translateY(0); }
     .btn-pulse { animation: pulse-glow 2.2s ease-in-out infinite; }
     @keyframes pulse-glow {
@@ -471,16 +495,17 @@
     /* ─── HERO CTA BUTTON ─── */
     .hero-cta-btn {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--green); color: #000;
-      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(135deg, var(--green) 0%, #00b896 50%, var(--purple) 100%);
+      background-size: 200% 200%; background-position: 0% 50%;
+      color: #fff; font-family: 'Rubik', sans-serif;
       font-weight: 800; font-size: 1.05rem;
-      padding: 15px 38px; border-radius: 50px;
+      padding: 16px 42px; border-radius: 50px;
       text-decoration: none;
-      margin: 28px auto 14px; transition: all .2s;
-      box-shadow: 0 0 30px rgba(0,230,118,.35);
+      margin: 28px auto 14px; transition: all .3s;
+      box-shadow: 0 0 30px rgba(0,230,118,.35), 0 0 60px rgba(124,58,237,.15);
       position: relative; z-index: 1;
     }
-    .hero-cta-btn:hover { background: #00c853; transform: translateY(-2px); box-shadow: 0 0 44px rgba(0,230,118,.55); }
+    .hero-cta-btn:hover { background-position: 100% 50%; transform: translateY(-3px); box-shadow: 0 0 50px rgba(0,230,118,.55), 0 0 80px rgba(124,58,237,.25); color: #fff; }
     .hero-cta-btn svg { flex-shrink: 0; }
     .hero-rating {
       display: flex; align-items: center; justify-content: center;
@@ -516,20 +541,16 @@
 
     /* ─── PROOF NUMBERS SECTION ─── */
     .proof-numbers-section {
-      background: var(--surface); padding: 56px 24px; text-align: center;
+      background: var(--surface); padding: 64px 24px; text-align: center;
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
     }
-    .proof-numbers-section h2 { font-size: 1.3rem; font-weight: 700; color: var(--text2); margin-bottom: 40px; }
-    .proof-nums-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-      gap: 28px; max-width: 860px; margin: 0 auto;
-    }
-    .proof-num-item { padding: 8px; }
-    .proof-num-val {
-      font-family: 'Rubik', sans-serif; font-weight: 900;
-      font-size: clamp(2rem,4vw,2.8rem); color: var(--green);
-      line-height: 1; display: block; margin-bottom: 8px;
-    }
+    .proof-numbers-section::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:400px; height:300px; background:radial-gradient(ellipse, rgba(124,58,237,.1) 0%, transparent 70%); pointer-events:none; }
+    .proof-numbers-section h2 { font-size: 1.3rem; font-weight: 700; color: var(--text2); margin-bottom: 40px; position:relative; }
+    .proof-nums-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 20px; max-width: 860px; margin: 0 auto; }
+    .proof-num-item { padding: 24px 16px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: transform .25s, box-shadow .25s; }
+    .proof-num-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,230,118,.12); }
+    .proof-num-val { font-family: 'Rubik', sans-serif; font-weight: 900; font-size: clamp(2rem,4vw,2.8rem); color: var(--green); line-height: 1; display: block; margin-bottom: 8px; }
     .proof-num-label { color: var(--muted); font-size: 0.83rem; font-weight: 600; }
 
     /* ─── RESULTS SECTION ─── */
@@ -543,9 +564,12 @@
       gap: 20px; max-width: 1000px; margin: 0 auto;
     }
     .result-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px 24px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: var(--radius-lg); padding: 36px 24px;
+      transition: transform .3s, box-shadow .3s;
     }
+    .result-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(0,230,118,.15); }
     .result-emoji { font-size: 2.2rem; display: block; margin-bottom: 12px; }
     .result-num {
       font-family: 'Rubik', sans-serif; font-size: clamp(2.4rem,5vw,3.2rem);
@@ -620,12 +644,14 @@
     }
     .guarantee-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; max-width: 680px; margin: 0 auto;
-      padding: 48px 36px; position: relative; overflow: hidden;
+      border-radius: 24px; max-width: 680px; margin: 0 auto;
+      padding: 56px 40px; position: relative; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.4), 0 0 0 1px rgba(0,230,118,.08);
     }
     .guarantee-card::before {
       content:''; position:absolute; inset:0;
-      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,230,118,.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124,58,237,.12) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0,230,118,.1) 0%, transparent 60%);
       pointer-events: none;
     }
     .guarantee-icon {
@@ -645,7 +671,206 @@
       border-radius: 30px; padding: 8px 18px;
       font-size: 0.8rem; font-weight: 700; color: var(--text2);
     }
-    .g-badge span { font-size: 1.1rem; }
+    /* ─── DE/POR PRICE BLOCK ─── */
+    .price-de-block {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 6px; flex-wrap: wrap;
+    }
+    .price-de {
+      font-size: 0.88rem; color: var(--muted);
+      text-decoration: line-through; font-weight: 600;
+    }
+    .price-save-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(251,191,36,.15); border: 1px solid rgba(251,191,36,.3);
+      color: var(--gold); font-size: 0.7rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 20px; letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    /* ─── HOW STEPS — GLASS UPGRADE ─── */
+    .how-step {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-radius: 18px; padding: 32px 20px; position: relative;
+      transition: transform .28s, box-shadow .28s;
+    }
+    .how-step:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,230,118,.1); }
+    .how-step::after {
+      content: '→'; position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%); font-size: 1.3rem;
+      color: var(--green); z-index: 1; opacity: 0.6;
+    }
+    .how-step:last-child::after { display: none; }
+    .how-step-num {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,230,118,.2), rgba(124,58,237,.15));
+      border: 2px solid rgba(0,230,118,.3);
+      color: var(--green); font-family: 'Rubik', sans-serif; font-weight: 900; font-size: 1.15rem;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+      box-shadow: 0 0 16px rgba(0,230,118,.15);
+    }
+
+    /* ─── CTA FINAL BUTTONS — UNIFIED ─── */
+    .cta-btns .btn-cta {
+      background: transparent;
+      border: 2px solid rgba(0,230,118,.4);
+      color: var(--text2);
+      backdrop-filter: blur(8px);
+    }
+    .cta-btns .btn-cta:hover {
+      background: rgba(0,230,118,.1);
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,230,118,.2);
+    }
+    .cta-btns .btn-cta.primary {
+      background: linear-gradient(135deg, var(--green), #00b896, var(--purple));
+      background-size: 200%;
+      border: none;
+      color: #fff;
+    }
+    .cta-btns .btn-cta.primary:hover {
+      background-position: 100%;
+      color: #fff;
+      box-shadow: 0 10px 32px rgba(0,230,118,.35), 0 4px 16px rgba(124,58,237,.2);
+    }
+
+
+    /* ═══ FUTURISTIC UPGRADES — 21st.dev inspired ═══ */
+
+    /* 1. Gradient Text Animado */
+    @keyframes gradient-shift {
+      0%,100% { background-position: 0%   50%; }
+      50%      { background-position: 100% 50%; }
+    }
+    .text-gradient-animated {
+      background: linear-gradient(270deg, var(--green), var(--purple), #00d4ff, var(--green));
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 5s ease-in-out infinite;
+      font-style: normal;
+    }
+
+    /* 2. Dot Grid para seções intermediarias */
+    .section-dotgrid {
+      position: relative;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .section-dotgrid::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 100% 25% at 50% 0%,  var(--bg) 0%, transparent 100%),
+        radial-gradient(ellipse 100% 25% at 50% 100%, var(--bg) 0%, transparent 100%);
+      pointer-events: none; z-index: 0;
+    }
+    .section-dotgrid > * { position: relative; z-index: 1; }
+
+    /* 3. Aurora Background para seções */
+    .section-aurora {
+      position: relative;
+      overflow: hidden;
+    }
+    .section-aurora::before {
+      content: '';
+      position: absolute;
+      inset: -60%;
+      width: 220%; height: 220%;
+      background:
+        radial-gradient(ellipse 70% 50% at 15% 0%,  rgba(124,58,237,.22) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 85% 100%, rgba(0,230,118,.18)  0%, transparent 55%),
+        radial-gradient(ellipse 45% 55% at 50% 50%,  rgba(0,212,255,.09)  0%, transparent 60%);
+      filter: blur(48px);
+      animation: aurora-drift 14s ease-in-out infinite alternate;
+      pointer-events: none; z-index: 0;
+    }
+    .section-aurora > * { position: relative; z-index: 1; }
+    @keyframes aurora-drift {
+      0%   { transform: translate(-4%,-7%)  scale(1.00); }
+      33%  { transform: translate(3%, 5%)   scale(1.04); }
+      66%  { transform: translate(-3%, 7%)  scale(0.97); }
+      100% { transform: translate(4%,-4%)   scale(1.02); }
+    }
+
+    /* 4. Border Beam no qty-card ativo */
+    @property --beam-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    .qty-card.active {
+      position: relative;
+      overflow: hidden;
+    }
+    .qty-card.active::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(
+        from var(--beam-angle),
+        transparent 0%, transparent 55%,
+        var(--green) 72%, #00d4ff 84%, var(--purple) 90%,
+        transparent 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-beam-spin 2.5s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes border-beam-spin { to { --beam-angle: 360deg; } }
+
+    /* 5. Typewriter para o badge do hero */
+    @keyframes typewriter-cursor {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    .badge-typewriter::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 2px;
+      animation: typewriter-cursor 1s step-end infinite;
+      color: var(--green);
+      font-weight: 400;
+    }
+
+    /* 6. WhatsApp Marquee / Carousel */
+    .wa-marquee-track-wrap {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+    .wa-marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: wa-scroll 30s linear infinite;
+    }
+    .wa-marquee-track:hover { animation-play-state: paused; }
+    .wa-marquee-track .wa-msg {
+      flex-shrink: 0;
+      width: 320px;
+    }
+    @keyframes wa-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-marquee-track { animation: none; }
+      .qty-card.active::after { animation: none; }
+      .section-aurora::before { animation: none; }
+      .text-gradient-animated { animation: none; }
+    }
 
   </style>
 <!-- Meta Pixel -->
@@ -668,6 +893,8 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
+
 <!-- TOPBAR -->
 <div class="topbar" role="banner">
   <div class="topbar-track">
@@ -681,11 +908,13 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-badge badge-typewriter">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     Novidade 2025 &mdash; Pague so quando receber
   </div>
-  <h1>Saude e Beleza<br>direto na sua porta,<br><em>sem pagar antes.</em></h1>
+  <h1>Saude e Beleza<br>direto na sua porta,<br><span class="text-gradient-animated">sem pagar antes.</span></h1>
   <p class="hero-sub">Escolha o produto, receba em casa e pague so quando o entregador chegar. Zero antecipacao. Zero risco.</p>
   <a href="#joelheira" class="hero-cta-btn">
     Ver os Produtos
@@ -835,13 +1064,15 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
           <div class="qty-card" data-qty="2" onclick="selectQty('joelheira',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
+            <div class="qty-price-de">De R$194,00</div>
             <div class="qty-price-unit">R$ 59,99/un</div>
             <div class="qty-price-total">R$ 119,97 total</div>
             <div class="qty-save">Economize R$ 74,03</div>
           </div>
-          <div class="qty-card" data-qty="3" onclick="selectQty('joelheira',3)" role="button" aria-pressed="false" tabindex="0" style="display:none">
+          <div class="qty-card" data-qty="3" onclick="selectQty('joelheira',3)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag value">Melhor Valor</div>
             <div class="qty-num">3 unidades</div>
+            <div class="qty-price-de">De R$291,00</div>
             <div class="qty-price-unit">R$ 65,67/un</div>
             <div class="qty-price-total">R$ 197,00 total</div>
             <div class="qty-save">Economize R$ 94,00</div>
@@ -851,20 +1082,19 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
       <div class="prod-price-box">
         <div>
+          <div class="price-de-block">
+            <span class="price-de">De: R$ 197,97</span>
+            <span class="price-save-badge">&#9660; Economize R$100,97</span>
+          </div>
           <div class="prod-price-main" id="price-joelheira">R$ 97,00</div>
           <div class="prod-price-inst" id="inst-joelheira">ou 4x de R$ 24,25 sem juros</div>
         </div>
-        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
       <a href="https://app.coinzz.com.br/checkout/joelheira-premium-vne4y-1291" class="btn-buy btn-pulse" id="btn-joelheira">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="btn-text">Quero 1 Joelheira &mdash; R$ 97,00</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <div class="prod-social-proof">
-        <div class="proof-dot" aria-hidden="true"></div>
-        <p class="proof-text"><strong id="viewers-joelheira">23</strong> pessoas estao vendo este produto agora</p>
-      </div>
     </div>
   </div>
 </section>
@@ -909,6 +1139,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
           <div class="qty-card" data-qty="2" onclick="selectQty('clareador',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
+            <div class="qty-price-de">De R$194,00</div>
             <div class="qty-price-unit">R$ 62,49/un</div>
             <div class="qty-price-total">R$ 124,97 total</div>
             <div class="qty-save">Economize R$ 69,03</div>
@@ -916,6 +1147,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
           <div class="qty-card" data-qty="3" onclick="selectQty('clareador',3)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag value">Melhor Valor</div>
             <div class="qty-num">3 unidades</div>
+            <div class="qty-price-de">De R$291,00</div>
             <div class="qty-price-unit">R$ 65,67/un</div>
             <div class="qty-price-total">R$ 197,00 total</div>
             <div class="qty-save">Economize R$ 94,00</div>
@@ -925,20 +1157,19 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
       <div class="prod-price-box">
         <div>
+          <div class="price-de-block">
+            <span class="price-de">De: R$ 197,97</span>
+            <span class="price-save-badge">&#9660; Economize R$100,97</span>
+          </div>
           <div class="prod-price-main" id="price-clareador">R$ 97,00</div>
           <div class="prod-price-inst" id="inst-clareador">ou 4x de R$ 24,25 sem juros</div>
         </div>
-        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
       <a href="https://app.coinzz.com.br/checkout/sabonete-em-pasta-clareador-moajy-1249" class="btn-buy btn-pulse" id="btn-clareador">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="btn-text">Quero 1 Clareador &mdash; R$ 97,00</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <div class="prod-social-proof">
-        <div class="proof-dot" aria-hidden="true"></div>
-        <p class="proof-text"><strong id="viewers-clareador">41</strong> pessoas estao vendo este produto agora</p>
-      </div>
     </div>
   </div>
 </section>
@@ -983,6 +1214,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
           <div class="qty-card" data-qty="2" onclick="selectQty('pistola',2)" role="button" aria-pressed="false" tabindex="0">
             <div class="qty-tag popular">+ Popular</div>
             <div class="qty-num">2 unidades</div>
+            <div class="qty-price-de">De R$239,94</div>
             <div class="qty-price-unit">R$ 98,50/un</div>
             <div class="qty-price-total">R$ 197,00 total</div>
             <div class="qty-save">Economize R$ 42,94</div>
@@ -999,20 +1231,19 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
       <div class="prod-price-box">
         <div>
+          <div class="price-de-block">
+            <span class="price-de">De: R$ 247,97</span>
+            <span class="price-save-badge">&#9660; Economize R$128,00</span>
+          </div>
           <div class="prod-price-main" id="price-pistola">R$ 119,97</div>
           <div class="prod-price-inst" id="inst-pistola">ou 4x de R$ 29,99 sem juros</div>
         </div>
-        <div class="prod-price-cod">PAGUE NA ENTREGA</div>
       </div>
       <a href="https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-1292" class="btn-buy btn-pulse" id="btn-pistola">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         <span class="btn-text">Quero 1 Pistola &mdash; R$ 119,97</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <div class="prod-social-proof">
-        <div class="proof-dot" aria-hidden="true"></div>
-        <p class="proof-text"><strong id="viewers-pistola">17</strong> pessoas estao vendo este produto agora</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1021,7 +1252,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
 
 <!-- RESULTADOS -->
-<section class="results-section">
+<section class="results-section section-dotgrid">
   <div class="reveal">
     <h2>Resultados que nossos clientes relatam</h2>
     <p class="sub">Baseado em avaliacoes reais de compradores verificados</p>
@@ -1055,7 +1286,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 </section>
 
 <!-- COMO FUNCIONA -->
-<section class="how-section">
+<section class="how-section section-dotgrid">
   <div class="reveal">
     <div class="eyebrow" style="text-align:center">Simples assim</div>
     <h2>Como funciona o Pague na Entrega?</h2>
@@ -1078,94 +1309,74 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     <h2>O que os clientes estao falando</h2>
     <p class="sub">Mensagens reais recebidas pelo WhatsApp</p>
   </div>
-  <div style="max-width:700px;margin:0 auto;">
-    <div class="wa-header reveal">
+  <div class="reveal" style="margin-bottom:24px">
+    <div class="wa-header">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp &mdash; Mensagens de clientes
     </div>
-    <div class="wa-phone-frame reveal">
+  </div>
+  <div class="wa-marquee-track-wrap">
+    <div class="wa-marquee-track">
+      <!-- Set 1 -->
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=47" alt="Mariana S.">
-          <div>
-            <div class="wa-name">Mariana S.</div>
-            <div class="wa-location">Sao Paulo, SP</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          Gente recebi a joelheira ontem!! Que produto incrivel 😍 ja usei uma vez e a dor no joelho ja melhorou muito. Nao precisei pagar antes, chegou em 4 dias lacrado. Super recomendo! &#128515;
-          <div class="wa-meta">14:23 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=47" alt="Mariana S."><div><div class="wa-name">Mariana S.</div><div class="wa-location">Sao Paulo, SP</div></div></div>
+        <div class="wa-bubble">Gente recebi a joelheira ontem!! Que produto incrivel 😍 ja usei uma vez e a dor no joelho ja melhorou muito. Nao precisei pagar antes, chegou em 4 dias lacrado.<div class="wa-meta">14:23 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Joelheira</span>
       </div>
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=32" alt="Camila R.">
-          <div>
-            <div class="wa-name">Camila R.</div>
-            <div class="wa-location">BH, MG</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          menina que clareador bom!! to usando ha 2 semanas ja da pra ver diferenca na axila e cotovelo &#128525; e o melhor, paguei quando o entregador chegou, zero risco. vou comprar mais 2 &#128640;
-          <div class="wa-meta">10:51 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=32" alt="Camila R."><div><div class="wa-name">Camila R.</div><div class="wa-location">BH, MG</div></div></div>
+        <div class="wa-bubble">menina que clareador bom!! to usando ha 2 semanas ja da pra ver diferenca na axila e cotovelo &#128525; e o melhor, paguei quando o entregador chegou, zero risco. vou comprar mais 2 &#128640;<div class="wa-meta">10:51 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Clareador</span>
       </div>
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=12" alt="Ricardo M.">
-          <div>
-            <div class="wa-name">Ricardo M.</div>
-            <div class="wa-location">Curitiba, PR</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          Cara a pistola massageadora e top demais! Uso todo dia depois do treino. Ate minha esposa ficou com inveja e comprou uma pra ela kkk. Chegou rapido e qualidade otima &#128170;
-          <div class="wa-meta">19:07 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=12" alt="Ricardo M."><div><div class="wa-name">Ricardo M.</div><div class="wa-location">Curitiba, PR</div></div></div>
+        <div class="wa-bubble">Cara a pistola massageadora e top demais! Uso todo dia depois do treino. Ate minha esposa ficou com inveja kkk. Chegou rapido e qualidade otima &#128170;<div class="wa-meta">19:07 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Pistola</span>
       </div>
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=9" alt="Fernanda O.">
-          <div>
-            <div class="wa-name">Fernanda O.</div>
-            <div class="wa-location">Salvador, BA</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          Comprei pra minha mae de 62 anos. Ela amou! Disse que foi o melhor presente que ja ganhei &#128149; O pague na entrega deu muita seguranca pra ela que nao gosta de comprar pela internet
-          <div class="wa-meta">08:34 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=9" alt="Fernanda O."><div><div class="wa-name">Fernanda O.</div><div class="wa-location">Salvador, BA</div></div></div>
+        <div class="wa-bubble">Comprei pra minha mae de 62 anos. Ela amou! Disse que foi o melhor presente que ja ganhei &#128149; O pague na entrega deu muita seguranca pra ela<div class="wa-meta">08:34 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Joelheira</span>
       </div>
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=20" alt="Patricia L.">
-          <div>
-            <div class="wa-name">Patricia L.</div>
-            <div class="wa-location">Fortaleza, CE</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          Ja comprei o clareador 2x! As manchas do melasma clarearam em 3 semanas. Nunca tinha visto resultado assim em nenhum produto. Melhor compra do ano &#11088;&#11088;&#11088;&#11088;&#11088;
-          <div class="wa-meta">16:42 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=20" alt="Patricia L."><div><div class="wa-name">Patricia L.</div><div class="wa-location">Fortaleza, CE</div></div></div>
+        <div class="wa-bubble">Ja comprei o clareador 2x! As manchas do melasma clarearam em 3 semanas. Nunca tinha visto resultado assim em nenhum produto. Melhor compra do ano &#11088;&#11088;&#11088;&#11088;&#11088;<div class="wa-meta">16:42 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Clareador</span>
       </div>
       <div class="wa-msg">
-        <div class="wa-msg-header">
-          <img class="wa-avatar" src="https://i.pravatar.cc/40?img=15" alt="Bruno T.">
-          <div>
-            <div class="wa-name">Bruno T.</div>
-            <div class="wa-location">Rio de Janeiro, RJ</div>
-          </div>
-        </div>
-        <div class="wa-bubble">
-          Comprei a pistola sem muita esperanca e me surpreendi! Poderosa, silenciosa e a entrega foi em apenas 3 dias &#128522; Vale muito pelo preco. Ja indiquei pra 3 amigos da academia
-          <div class="wa-meta">21:15 <span class="wa-check">&#10003;&#10003;</span></div>
-        </div>
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=15" alt="Bruno T."><div><div class="wa-name">Bruno T.</div><div class="wa-location">Rio de Janeiro, RJ</div></div></div>
+        <div class="wa-bubble">Comprei a pistola sem muita esperanca e me surpreendi! Poderosa, silenciosa e a entrega foi em apenas 3 dias &#128522; Vale muito pelo preco. Ja indiquei pra 3 amigos da academia<div class="wa-meta">21:15 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Pistola</span>
+      </div>
+      <!-- Set 2 — duplicado para loop seamless -->
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=47" alt="Mariana S."><div><div class="wa-name">Mariana S.</div><div class="wa-location">Sao Paulo, SP</div></div></div>
+        <div class="wa-bubble">Gente recebi a joelheira ontem!! Que produto incrivel 😍 ja usei uma vez e a dor no joelho ja melhorou muito. Nao precisei pagar antes, chegou em 4 dias lacrado.<div class="wa-meta">14:23 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Joelheira</span>
+      </div>
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=32" alt="Camila R."><div><div class="wa-name">Camila R.</div><div class="wa-location">BH, MG</div></div></div>
+        <div class="wa-bubble">menina que clareador bom!! to usando ha 2 semanas ja da pra ver diferenca na axila e cotovelo &#128525; e o melhor, paguei quando o entregador chegou, zero risco. vou comprar mais 2 &#128640;<div class="wa-meta">10:51 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Clareador</span>
+      </div>
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=12" alt="Ricardo M."><div><div class="wa-name">Ricardo M.</div><div class="wa-location">Curitiba, PR</div></div></div>
+        <div class="wa-bubble">Cara a pistola massageadora e top demais! Uso todo dia depois do treino. Ate minha esposa ficou com inveja kkk. Chegou rapido e qualidade otima &#128170;<div class="wa-meta">19:07 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Pistola</span>
+      </div>
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=9" alt="Fernanda O."><div><div class="wa-name">Fernanda O.</div><div class="wa-location">Salvador, BA</div></div></div>
+        <div class="wa-bubble">Comprei pra minha mae de 62 anos. Ela amou! Disse que foi o melhor presente que ja ganhei &#128149; O pague na entrega deu muita seguranca pra ela<div class="wa-meta">08:34 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Joelheira</span>
+      </div>
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=20" alt="Patricia L."><div><div class="wa-name">Patricia L.</div><div class="wa-location">Fortaleza, CE</div></div></div>
+        <div class="wa-bubble">Ja comprei o clareador 2x! As manchas do melasma clarearam em 3 semanas. Nunca tinha visto resultado assim em nenhum produto &#11088;&#11088;&#11088;&#11088;&#11088;<div class="wa-meta">16:42 <span class="wa-check">&#10003;&#10003;</span></div></div>
+        <span class="wa-product-chip">Clareador</span>
+      </div>
+      <div class="wa-msg">
+        <div class="wa-msg-header"><img class="wa-avatar" src="https://i.pravatar.cc/40?img=15" alt="Bruno T."><div><div class="wa-name">Bruno T.</div><div class="wa-location">Rio de Janeiro, RJ</div></div></div>
+        <div class="wa-bubble">Comprei a pistola sem muita esperanca e me surpreendi! Poderosa, silenciosa e a entrega foi em apenas 3 dias &#128522; Vale muito pelo preco<div class="wa-meta">21:15 <span class="wa-check">&#10003;&#10003;</span></div></div>
         <span class="wa-product-chip">Pistola</span>
       </div>
     </div>
@@ -1216,7 +1427,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 <hr class="section-divider">
 
 <!-- CTA FINAL -->
-<section class="cta-final">
+<section class="cta-final section-aurora">
   <div class="reveal">
     <h2>Pronto para experimentar<br>sem risco nenhum?</h2>
     <p>Escolha seu produto, receba em casa e pague so quando chegar. Frete gratis para todo o Brasil.</p>
@@ -1258,19 +1469,19 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
   /* ─── PRODUCT DATA ─── */
   var products = {
     joelheira: { tiers: {
-      1: { label: '1 Joelheira',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/joelheira-premium-vne4y-1291' },
-      2: { label: '2 Joelheiras', total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291' },
-      3: { label: '2 Joelheiras', total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291' }
+      1: { label: '1 Joelheira',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/joelheira-premium-vne4y-1291',                              from: 197.97, save: 100.97 },
+      2: { label: '2 Joelheiras', total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291',                       from: 194.00, save:  74.03 },
+      3: { label: '3 Joelheiras', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/joelheira-premium---2-unidades-1291',                       from: 291.00, save:  94.00 }
     }},
     clareador: { tiers: {
-      1: { label: '1 Clareador',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/sabonete-em-pasta-clareador-moajy-1249' },
-      2: { label: '2 Claradores', total: 124.97, inst: '4x de R$ 31,24', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---2-unidades-1249' },
-      3: { label: '3 Claradores', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---3-unidades---tratamento-completo-1249' }
+      1: { label: '1 Clareador',  total: 97,     inst: '4x de R$ 24,25', link: 'https://app.coinzz.com.br/checkout/sabonete-em-pasta-clareador-moajy-1249',                    from: 197.97, save: 100.97 },
+      2: { label: '2 Claradores', total: 124.97, inst: '4x de R$ 31,24', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---2-unidades-1249',                      from: 194.00, save:  69.03 },
+      3: { label: '3 Claradores', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/sabonete-clareador---3-unidades---tratamento-completo-1249', from: 291.00, save:  94.00 }
     }},
     pistola: { tiers: {
-      1: { label: '1 Pistola',  total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-1292' },
-      2: { label: '2 Pistolas', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292' },
-      3: { label: '2 Pistolas', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292' }
+      1: { label: '1 Pistola',  total: 119.97, inst: '4x de R$ 29,99', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-1292',              from: 247.97, save: 128.00 },
+      2: { label: '2 Pistolas', total: 197,    inst: '4x de R$ 49,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292',  from: 239.94, save:  42.94 },
+      3: { label: '3 Pistolas', total: 285,    inst: '4x de R$ 71,25', link: 'https://app.coinzz.com.br/checkout/pistola-massageadora-customizada-2-unidades-1292',  from: 359.91, save:  74.91 }
     }}
   };
 
@@ -1289,6 +1500,13 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     var instEl  = document.getElementById('inst-' + pid);
     if (priceEl) priceEl.textContent = fmtBRL(tier.total);
     if (instEl)  instEl.textContent  = 'ou ' + tier.inst + ' sem juros';
+
+    /* Update De/Por block dynamically */
+    var deEl   = container.querySelector('.price-de');
+    var saveEl = container.querySelector('.price-save-badge');
+    if (deEl && tier.from)   deEl.textContent   = 'De: ' + fmtBRL(tier.from);
+    if (saveEl && tier.save) saveEl.textContent = '\u2193 Economize ' + fmtBRL(tier.save);
+
     var btn = document.getElementById('btn-' + pid);
     if (btn) {
       btn.href = tier.link;
@@ -1345,6 +1563,47 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     setTimeout(nudge, 4000 + Math.random() * 6000);
   }
   setTimeout(nudge, 6000);
+
+  /* ─── SCROLL PROGRESS BAR ─── */
+  var scrollBar = document.getElementById('scroll-progress');
+  if (scrollBar) {
+    window.addEventListener('scroll', function() {
+      var scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+      var total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      scrollBar.style.width = (total > 0 ? (scrolled / total * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  /* ─── COUNT-UP ANIMATION ─── */
+  function countUp(el) {
+    var raw = el.getAttribute('data-target') || el.textContent;
+    var suffix = raw.replace(/[0-9.,]/g, '').trim();
+    var target = parseFloat(raw.replace(/[^0-9.]/g, ''));
+    if (isNaN(target)) return;
+    var start = 0, duration = 1800, startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3); /* ease-out-cubic */
+      var current = start + (target - start) * eased;
+      var display = target >= 1000 ? Math.floor(current).toLocaleString('pt-BR') : current.toFixed(target % 1 === 0 ? 0 : 1);
+      el.textContent = display + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  /* Tag each proof-num-val with data-target before animating */
+  document.querySelectorAll('.proof-num-val').forEach(function(el) {
+    el.setAttribute('data-target', el.textContent);
+    el.textContent = '0';
+  });
+  var countObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { countUp(e.target); countObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.proof-num-val').forEach(function(el) { countObs.observe(el); });
+
 </script>
 
 <script>
