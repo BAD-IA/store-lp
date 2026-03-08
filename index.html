@@ -18,7 +18,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #080810;
+      --bg: #070710;
       --surface: #0f0f1a;
       --surface2: #171726;
       --surface3: #1e1e32;
@@ -37,8 +37,9 @@
       --muted: #6868a0;
       --radius: 14px;
       --radius-lg: 22px;
-      --glass: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.03);
       --glass-border: rgba(255,255,255,0.08);
+      --glass-glow: 0 8px 32px 0 rgba(0,0,0,0.37);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -336,20 +337,36 @@
     /* ─── FAQ ─── */
     .faq-section { padding: 80px 24px; max-width: 720px; margin: 0 auto; }
     .faq-section h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900; margin-bottom: 36px; text-align: center; }
-    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
-    .faq-item.open { border-color: rgba(0,230,118,.3); }
-    .faq-q {
-      padding: 18px 22px; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center;
-      font-weight: 600; font-size: 0.92rem;
-      user-select: none; background: var(--surface); transition: background .2s; gap: 12px;
+    .faq-item {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--radius); margin-bottom: 12px;
+      overflow: hidden; transition: all .3s cubic-bezier(.4,0,.2,1);
+      cursor: pointer;
     }
-    .faq-item.open .faq-q { background: var(--surface2); }
-    .faq-arrow { color: var(--green); transition: transform .28s; flex-shrink: 0; }
+    .faq-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(0,230,118,0.3); }
+    .faq-q {
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 700; font-size: 0.95rem;
+      user-select: none; gap: 12px;
+    }
+    .faq-arrow { color: var(--green); transition: transform .4s cubic-bezier(.4,0,.2,1); flex-shrink: 0; }
     .faq-arrow svg { width: 18px; height: 18px; }
     .faq-item.open .faq-arrow { transform: rotate(180deg); }
-    .faq-a { display: none; padding: 0 22px 18px; font-size: 0.88rem; line-height: 1.75; color: var(--muted); background: var(--surface2); }
-    .faq-item.open .faq-a { display: block; }
+    .faq-a-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .4s cubic-bezier(.4,0,.2,1);
+    }
+    .faq-item.open .faq-a-wrapper { grid-template-rows: 1fr; }
+    .faq-a {
+      overflow: hidden;
+      font-size: 0.9rem; line-height: 1.7; color: var(--text2);
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-a { padding-bottom: 20px; }
 
     /* ─── CTA FINAL ─── */
     .cta-final {
@@ -390,20 +407,28 @@
 
     /* ─── STICKY MOBILE ─── */
     .sticky-mobile {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0;
-      background: rgba(11,11,16,.97); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-      border-top: 1px solid var(--border); padding: 10px 14px; z-index: 200;
+      display: none; position: fixed; bottom: 20px; left: 20px; right: 20px;
+      background: rgba(11,11,16,.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border); border-radius: 40px;
+      padding: 10px 10px; z-index: 200;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
     }
-    .sticky-label { font-size: 0.68rem; color: var(--muted); font-weight: 600; text-align: center; margin-bottom: 7px; letter-spacing: 0.05em; text-transform: uppercase; }
-    .sticky-btns { display: flex; gap: 7px; }
+    .sticky-btns { display: flex; gap: 8px; }
     .sticky-btns a {
-      flex: 1; text-align: center; padding: 12px 6px; border-radius: 50px;
+      flex: 1; text-align: center; padding: 12px 10px; border-radius: 30px;
       font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 0.72rem;
-      text-decoration: none; transition: all .2s; cursor: pointer;
+      text-decoration: none; transition: all .3s ease; cursor: pointer;
+      position: relative; overflow: hidden;
     }
-    .sm-btn-1 { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
-    .sm-btn-2, .sm-btn-3 { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); }
-    .sm-btn-2:hover, .sm-btn-3:hover { border-color: var(--green); color: var(--green); }
+    .sm-btn-1 { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; box-shadow: 0 4px 15px rgba(0,230,118,0.3); }
+    .sm-btn-2, .sm-btn-3 { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text2); }
+    .sm-btn-2:hover, .sm-btn-3:hover { border-color: var(--green); color: var(--green); background: rgba(0,230,118,0.1); }
+    .sticky-btns a::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      animation: sm-shimmer 3s infinite;
+    }
+    @keyframes sm-shimmer { to { left: 150%; } }
 
     /* ─── REVEAL ─── */
     .reveal, .reveal-left, .reveal-right { opacity: 0; transition: opacity .55s ease, transform .55s ease; }
@@ -821,6 +846,7 @@
         transparent 100%
       );
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       animation: border-beam-spin 2.5s linear infinite;
@@ -849,6 +875,7 @@
       width: 100%;
       mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
     }
     .wa-marquee-track {
       display: flex;
@@ -872,6 +899,14 @@
       .text-gradient-animated { animation: none; }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 <!-- Meta Pixel -->
 <script>
@@ -1036,11 +1071,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     </div>
     <div class="prod-content reveal-right" id="prod-joelheira">
       <div class="eyebrow">Produto 01</div>
-      <div class="urgency-bar">
-        <div class="urgency-dot"></div>
-        <strong>41 pessoas</strong>&nbsp;viram este produto nas ultimas 2h &nbsp;&middot;&nbsp; Muito procurado esta semana
-        <span class="stock-badge">&#9889; Estoque limitado</span>
-      </div>
+      <div style="margin-top: -10px;"></div>
 
       <h2>Joelheira Ortopedica<br>de Compressao Premium</h2>
       <p class="prod-tagline">Sua dor de joelho nao vai sumir sozinha. A compressao alivia a dor, da suporte real e permite voce se mover com confianca de novo &mdash; desde o primeiro uso.</p>
@@ -1111,11 +1142,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     </div>
     <div class="prod-content reveal-left" id="prod-clareador">
       <div class="eyebrow">Produto 02</div>
-      <div class="urgency-bar">
-        <div class="urgency-dot"></div>
-        <strong>58 pessoas</strong>&nbsp;viram este produto nas ultimas 2h &nbsp;&middot;&nbsp; Produto mais vendido
-        <span class="stock-badge">&#9889; Estoque limitado</span>
-      </div>
+      <div style="margin-top: -10px;"></div>
 
       <h2>Sabonete Clareador<br>de Manchas Profundo</h2>
       <p class="prod-tagline">Manchas no rosto, virilhas e axilas nao precisam ser para sempre. Formula com Mulateiro, Dolomita e Aroeira age direto na raiz &mdash; resultado visivel em dias.</p>
@@ -1186,11 +1213,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
     </div>
     <div class="prod-content reveal-right" id="prod-pistola">
       <div class="eyebrow">Produto 03</div>
-      <div class="urgency-bar">
-        <div class="urgency-dot"></div>
-        <strong>34 pessoas</strong>&nbsp;viram este produto nas ultimas 2h &nbsp;&middot;&nbsp; Alta demanda
-        <span class="stock-badge">&#9889; Estoque limitado</span>
-      </div>
+      <div style="margin-top: -10px;"></div>
 
       <h2>Pistola Massageadora<br>Muscular Profissional</h2>
       <p class="prod-tagline">Tensao nas costas, pescoco e ombros acumulando ha dias? Elimine tensao muscular em minutos sem precisar de massagista &mdash; tecnologia percussiva profissional.</p>
@@ -1404,23 +1427,23 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
   <h2 class="reveal">Perguntas frequentes</h2>
   <div class="faq-item reveal" onclick="toggleFaq(this)">
     <div class="faq-q">Como funciona o pague na entrega?<span class="faq-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
-    <div class="faq-a">Voce faz o pedido informando nome e endereco. Seu produto e enviado e voce paga diretamente ao entregador quando receber. Nao ha nenhuma cobranca antes da entrega.</div>
+    <div class="faq-a-wrapper"><div class="faq-a">Voce faz o pedido informando nome e endereco. Seu produto e enviado e voce paga diretamente ao entregador quando receber. Nao ha nenhuma cobranca antes da entrega.</div></div>
   </div>
   <div class="faq-item reveal" onclick="toggleFaq(this)">
     <div class="faq-q">Qual o prazo de entrega?<span class="faq-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
-    <div class="faq-a">O prazo medio e de 3 a 5 dias uteis para todo o Brasil. Em regioes mais distantes pode levar ate 7 dias uteis.</div>
+    <div class="faq-a-wrapper"><div class="faq-a">O prazo medio e de 3 a 5 dias uteis para todo o Brasil. Em regioes mais distantes pode levar ate 7 dias uteis.</div></div>
   </div>
   <div class="faq-item reveal" onclick="toggleFaq(this)">
     <div class="faq-q">E seguro comprar assim?<span class="faq-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
-    <div class="faq-a">Sim! O pague na entrega e o modelo mais seguro para o comprador &mdash; voce so paga depois de ter o produto fisicamente nas maos e conferir o estado.</div>
+    <div class="faq-a-wrapper"><div class="faq-a">Sim! O pague na entrega e o modelo mais seguro para o comprador &mdash; voce so paga depois de ter o produto fisicamente nas maos e conferir o estado.</div></div>
   </div>
   <div class="faq-item reveal" onclick="toggleFaq(this)">
     <div class="faq-q">Posso trocar se nao gostar?<span class="faq-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
-    <div class="faq-a">Sim. Temos politica de troca garantida. Se o produto chegar com defeito ou diferente do anunciado, resolvemos sem burocracia.</div>
+    <div class="faq-a-wrapper"><div class="faq-a">Sim. Temos politica de troca garantida. Se o produto chegar com defeito ou diferente do anunciado, resolvemos sem burocracia.</div></div>
   </div>
   <div class="faq-item reveal" onclick="toggleFaq(this)">
     <div class="faq-q">Posso comprar mais de uma unidade com desconto?<span class="faq-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span></div>
-    <div class="faq-a">Sim! Em cada produto voce pode escolher 1, 2 ou 3 unidades &mdash; quanto mais voce leva, menor o preco por unidade. O desconto e aplicado automaticamente.</div>
+    <div class="faq-a-wrapper"><div class="faq-a">Sim! Em cada produto voce pode escolher 1, 2 ou 3 unidades &mdash; quanto mais voce leva, menor o preco por unidade. O desconto e aplicado automaticamente.</div></div>
   </div>
 </section>
 
@@ -1457,7 +1480,6 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
 <!-- STICKY MOBILE -->
 <div class="sticky-mobile">
-  <div class="sticky-label">Escolha seu produto</div>
   <div class="sticky-btns">
     <a href="#joelheira" class="sm-btn-1">Joelheira R$97</a>
     <a href="#clareador" class="sm-btn-2">Clareador R$97</a>
@@ -1527,9 +1549,9 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
 
   /* FAQ */
   function toggleFaq(item) {
-    var open = item.classList.contains('open');
+    var wasOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
-    if (!open) item.classList.add('open');
+    if (!wasOpen) item.classList.add('open');
   }
 
   /* Scroll reveal */
@@ -1548,21 +1570,7 @@ src="https://www.facebook.com/tr?id=1867243197267913&ev=PageView&noscript=1"
   window.addEventListener('resize', checkSticky);
   checkSticky();
 
-  /* Live viewer counter (decorative) */
-  var vEls = {
-    joelheira: document.getElementById('viewers-joelheira'),
-    clareador: document.getElementById('viewers-clareador'),
-    pistola:   document.getElementById('viewers-pistola')
-  };
-  function nudge() {
-    Object.keys(vEls).forEach(function(k) {
-      var el = vEls[k]; if (!el) return;
-      var n = Math.max(8, Math.min(99, parseInt(el.textContent) + (Math.floor(Math.random()*3)-1)));
-      el.textContent = n;
-    });
-    setTimeout(nudge, 4000 + Math.random() * 6000);
-  }
-  setTimeout(nudge, 6000);
+
 
   /* ─── SCROLL PROGRESS BAR ─── */
   var scrollBar = document.getElementById('scroll-progress');
